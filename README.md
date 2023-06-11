@@ -4,7 +4,7 @@
 We introduce S-NeRF, a revolutionary approach to synthesizing large unbounded street views for autonomous driving using Neural Radiance Fields (NeRFs). This project aims to enhance the realism and accuracy of street view synthesis and improve the robustness of NeRFs for real-world applications. (e.g. autonomous driving simulation, robotics, and augmented reality)
 
 
-![Scene Reconstruction Example](./assets/scene1.gif)
+![Teaser](./assets/teaser.png)
 
 ## Key Features
 
@@ -15,6 +15,8 @@ We introduce S-NeRF, a revolutionary approach to synthesizing large unbounded st
 - **Robust Geometry and Reprojection**: By utilizing noisy and sparse LiDAR points, S-NeRF learns a robust geometry and reprojection based confidence to address the depth outliers.
 
 - **Foreground Moving Vehicles**: S-NeRF extends its capabilities for reconstructing moving vehicles, a task that is impracticable for conventional NeRFs.
+
+![Model](./assets/model.png)
 
 ## Demo
 [![Demo Video](https://img.youtube.com/vi/CY4NK-bvEus/0.jpg)](https://www.youtube.com/embed/CY4NK-bvEus)
