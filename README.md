@@ -1,7 +1,7 @@
 # S-NeRF: Neural Radiance Fields for Street Views
 ### [[Project]](https://ziyang-xie.github.io/s-nerf/)[ [Paper]](https://arxiv.org/abs/2303.00749) 
 
-We introduce S-NeRF, a revolutionary approach to synthesizing large unbounded street views for autonomous driving using Neural Radiance Fields (NeRFs). This project aims to enhance the realism and accuracy of street view synthesis and improve the robustness of NeRFs for real-world applications. (e.g. autonomous driving simulation, robotics, and augmented reality)
+We introduce S-NeRF, a robust system to synthesizing large unbounded street views for autonomous driving using Neural Radiance Fields (NeRFs). This project aims to enhance the realism and accuracy of street view synthesis and improve the robustness of NeRFs for real-world applications. (e.g. autonomous driving simulation, robotics, and augmented reality)
 
 
 ![Teaser](./assets/teaser.png)
@@ -16,6 +16,7 @@ We introduce S-NeRF, a revolutionary approach to synthesizing large unbounded st
 
 - **Foreground Moving Vehicles**: S-NeRF extends its capabilities for reconstructing moving vehicles, a task that is impracticable for conventional NeRFs.
 
+## Model Pipline Overview
 ![Model](./assets/model.png)
 
 ## Demo
