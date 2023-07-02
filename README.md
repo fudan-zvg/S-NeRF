@@ -21,7 +21,7 @@ We introduce S-NeRF, a robust system to synthesizing large unbounded street view
 
 ## TODOs
 - [x] Env Installation
-- [ ] Pose Preparation Scripts
+- [x] Pose Preparation Scripts
 - [ ] Depth & Flow Preparation Scripts
 - [ ] Code for training and testing
 - [ ] Foreground Vehicle Reconstruction
@@ -45,17 +45,28 @@ pip install -r requiremnets.txt
 ```
 
 ### Data Preparation
-1. prepare the poses, images and depth in S-NeRF format
+1. Prepare Dataset
+```
+data/
+├── nuScenes/
+│   ├── mini/
+│   └── trainval/
+└── waymo/
+└── scenes/
+```
+
+2. prepare the poses, images and depth in S-NeRF format
+- nuScenes
+```
+python scripts/nuscenes_preprocess.py 
+       --version [v1.0-mini / v1.0-trainval] \
+       --dataroot ./data/<YOUR DATASET ROOT> \
+```
+
 - Waymo 
 ```
 python scripts/waymo_preprocess.py
 ```
-
-- nuScenes
-```
-python scripts/nuscenes_preprocess.py
-```
-generate the imgs and poses needed
 
 
 ### Training Snerf 
@@ -63,9 +74,6 @@ generate the imgs and poses needed
 Waymo or nuScenes\
 - Waymo:`5cams`, args.waymo = True\
 - nuScenes:`6cams`, args.backcam = True
-
-TODO
-
 
 ## Citation
 

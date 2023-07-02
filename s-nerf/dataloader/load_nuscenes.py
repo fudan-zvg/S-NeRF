@@ -39,7 +39,6 @@ def poses_avg(poses):
     return c2w
 
 def recenter_poses(poses):
-    
     poses_ = poses.copy()
     bottom = np.reshape([0,0,0,1.], [1,4])
     
@@ -83,12 +82,8 @@ def generate_render_path(poses, bds):
 
 def preprocess_poses(raw_pose):
     P = raw_pose.copy()
-    
-    # rot = P[3, :3,:3]
-    # P[:, :3,:3] = P[:, :3,:3] @ rot.T
     poses = np.concatenate([P[:, :, 1:2],P[:, :, 0:1], -P[:, :, 2:3], P[:, :, 3:4]], 2) # convert [r, -u, t] to [-u, r, -t]
     poses = np.concatenate([poses[:, :, 1:2], -poses[:, :, 0:1], poses[:, :, 2:]], 2)  # convert [-u, r, -t] to [r, u, -t]
-    # R.from_matrix(poses[2,:3,:3]).as_euler('yxz')*180/np.pi
     return poses
 
 def load_nuscenes_data(args, bds_raw, bd_factor=.75):
@@ -104,12 +99,7 @@ def load_nuscenes_data(args, bds_raw, bd_factor=.75):
     imgs = [imageio.imread(f)[...,:3].astype(np.float32)/255. for f in imgfiles]
     imgs = np.stack(imgs, 0)
     num = imgs.shape[0]
-    # P_path = [os.path.join(path, f"cam_pose/{car_n}", f"P_{i}.pt") for i in range(num)]
-    # K_path = [os.path.join(path, f"cam_pose/{car_n}", f"K_{i}.pt") for i in range(num)]
-    # P = [torch.load(P_).cpu().numpy() for P_ in P_path] # world2cam
-    # K = [torch.load(K_).cpu().numpy() for K_ in K_path]
-    # P = np.stack(P, 0)
-    # K = np.stack(K, 0)
+
     with open(os.path.join(args.datadir, 'poses_bounds.npy'),
                                 'rb') as fp:
             poses_arr = np.load(fp).astype(np.float32)
@@ -139,13 +129,8 @@ def load_nuscenes_data(args, bds_raw, bd_factor=.75):
         cx=raw_cam_K[0,:]/factor
         cy=raw_cam_K[1,:]/factor
         focal=raw_cam_K[2,:]/factor
-    K=[np.array([[focal[i],0,cx[i]],[0,focal[i],cy[i]],[0,0,1]]) for i in range(num)]
+    K = [np.array([[focal[i],0,cx[i]],[0,focal[i],cy[i]],[0,0,1]]) for i in range(num)]
     K = np.stack(K, 0)
-
-    # focal_list = [K_[0][0] for K_ in K]
-    # ori_points = [[K_[0, 2], K_[1,2]] for K_ in K]
-    
-    # poses = preprocess_poses(P)
     poses = np.concatenate(
             [poses[:, :, 1:2], -poses[:, :, 0:1], poses[:, :, 2:]], 2)
     
@@ -205,24 +190,5 @@ def load_depth_map(path, H,W,bd_factor=.75,sky_mask=False):
     bds_raw = np.array([[max(dep[dep>0.5].min(),2.), dep[dep<150].max()] for dep in depth])
     
     sc = 1. if bd_factor == 0. else 1./(bds_raw.min() * bd_factor)
-
-    # Transpose Index to W, H
-    # idx_dirs = [idx_dir[:,::-1] for idx_dir in idx_dirs]
-
-    # near = np.ndarray.min(bds_raw) * .9 * sc
-    # far = np.ndarray.max(bds_raw) * 1.2 * sc
-    # near = np.ndarray.min(bds_raw) * .9 * sc
-    # far = np.ndarray.max(bds_raw) * sc
-    # print('near/far:', near, far)
-    depth=depth*sc
-
-    # for dep in depth_values:
-    #     dep *= sc
-
-    # depth_out = [{
-    #     'depth': d_value,
-    #     'coord': i_dir,
-    #     'weight': np.ones_like(d_value)
-    # } for d_value, i_dir in zip(depth_values, idx_dirs)]
-    
+    depth = depth*sc
     return depth,(depth[depth>0.5].min(),depth[depth<150].max()),bds_raw,skymask
