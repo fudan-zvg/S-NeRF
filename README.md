@@ -37,7 +37,7 @@ pip install -r requiremnets.txt
 1. prepare the poses, images and depth in S-NeRF format
 - Waymo 
 ```
-python waymo_preprocess.py
+python scripts/waymo_preprocess.py
 ```
 
 - nuScenes
