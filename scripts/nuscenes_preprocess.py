@@ -25,13 +25,14 @@ if __name__ == '__main__':
     parser.add_argument('--total_num', type=int, default = 40, help = 'The frames needed')
     parser.add_argument('--camera_index', type=list, default = [0,1,2,3,4,5], help = 'Cameras chosen')
     parser.add_argument('--resize', action='store_true')
-    parser.add_argument('--first_sample_token', type=str, default='')
-    parser.add_argument('--savedir', type=str, default='')
+    parser.add_argument('--scene_name', type=str, default='scene-0061')
+    parser.add_argument('--savedir', type=str, default='./data/scenes')
     parser.add_argument('--width', type=int, default=1600)
     parser.add_argument('--height', type=int, default=900)
     args = parser.parse_args()
 
     # Data Initialization
+
     nusc = NuScenes(version=args.version, dataroot=args.dataroot, verbose=True)
     images = []
     ego2global_rts = []
@@ -39,7 +40,12 @@ if __name__ == '__main__':
     cam_intrinsics = []
     sensor = [SENSORS[i] for i in args.camera_index]
     
-    temp_sample = nusc.get('sample', args.first_sample_token)
+    for scene in nusc.scene:
+        if scene['name'] == args.scene_name:
+            break
+    
+    scene_token = scene['token']
+    temp_sample = nusc.get('sample', scene['first_sample_token'])
     IDX = 0
     sample_idx_list = {}
     for s in sensor:
@@ -105,9 +111,11 @@ if __name__ == '__main__':
     poses = np.concatenate([poses,cam_K[:,np.newaxis,:]], 1)
     poses = np.concatenate([poses[:, 1:2, :],poses[:, 0:1, :], -poses[:, 2:3, :], poses[:, 3:4, :], poses[:, 4:5, :]], 1)
     
+    #* Save the data
+    save_dir = os.path.join(args.savedir, args.scene_name)
     # Change the image array to img
     print('the number of total images:',len(images))
-    path = os.path.join(args.savedir, 'images')
+    path = os.path.join(save_dir, 'images')
     os.makedirs(path,exist_ok=True)
     # Resize the image to the destermined resolution
     
@@ -126,8 +134,8 @@ if __name__ == '__main__':
     # The first 15 nums consist of the poses: [R | T | cam_K]
     # The last fours contain cls and inf depth, the height and width of images.
     save_arr = np.array(save_arr)
-    save_path = os.path.join(args.savedir, 'poses_bounds.npy')
-    save_json = os.path.join(args.savedir, 'toekn.json')
+    save_path = os.path.join(save_dir, 'poses_bounds.npy')
+    save_json = os.path.join(save_dir, 'token.json')
     np.save(save_path, save_arr)
 
     with open(save_json, 'w+') as f:

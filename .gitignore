@@ -150,4 +150,5 @@ data/
 wandb
 web
 *.pyc
+*.sh
 .vscode
