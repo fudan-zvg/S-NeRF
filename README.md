@@ -28,6 +28,17 @@ We introduce S-NeRF, a robust system to synthesizing large unbounded street view
 - [ ] Pretrained models (Demo Scenes)
 
 ## Installation
+Create a conda environment:
+```
+conda create -n S-NeRF python=3.8 
+conda activate S-NeRF
+```
+
+Install predependents:
+```
+pip install "git+https://github.com/facebookresearch/pytorch3d.git@stable"
+```
+
 Install the required packages:
 ```
 pip install -r requiremnets.txt

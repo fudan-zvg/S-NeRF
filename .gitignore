@@ -146,7 +146,7 @@ dmypy.json
 cython_debug/
 
 logs
-data
+data/
 wandb
 web
 *.pyc
