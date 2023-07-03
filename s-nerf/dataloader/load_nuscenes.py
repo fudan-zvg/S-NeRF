@@ -173,22 +173,28 @@ def load_semantic(path):
     semantic_index = semantic[:,0,0,0,0]
     return semantic_index, semantic_labels
     
-def load_depth_map(path, H,W,bd_factor=.75,sky_mask=False):
-    skymask=None
+def load_depth_map(path, H, W, bd_factor=.75, sky_mask=False):
+    skymask = None
     depth_dir = os.path.join(path,'depth')
-    imgdir=depth_dir
+    imgdir = depth_dir
     img_files = sorted(os.listdir(imgdir), key=lambda x : int(x.split('.')[0]))
     imgfiles = [os.path.join(imgdir, f) for f in img_files if f.endswith('JPG') or f.endswith('jpg') or f.endswith('png')]
 
     imgs = [cv2.resize(cv2.imread(f,-1)/256.,(W,H)) for f in imgfiles]
     depth = np.stack(imgs, 0).astype(np.float32)
-    ## set the bounds for depth
+    
+    min_thresh = 0.5
+    max_thresh = 200
     if sky_mask:
-        skymask=depth>150
-    depth[depth>0.5] = np.clip(depth[depth>0.5],a_min=max(depth[depth>0.5].min(),2),a_max=100)
+        skymask = depth>max_thresh
     
-    bds_raw = np.array([[max(dep[dep>0.5].min(),2.), dep[dep<150].max()] for dep in depth])
+    depth[depth>min_thresh] = np.clip(depth[depth>min_thresh], 
+                                  a_min=max(depth[depth>min_thresh].min(),2), 
+                                  a_max=100)
     
+    bds_raw = np.array([[max(dep[dep>min_thresh].min(),2.), dep[dep<max_thresh].max()] for dep in depth])
     sc = 1. if bd_factor == 0. else 1./(bds_raw.min() * bd_factor)
-    depth = depth*sc
-    return depth,(depth[depth>0.5].min(),depth[depth<150].max()),bds_raw,skymask
+    depth = depth * sc
+    bds = (depth[depth>min_thresh].min(), depth[depth<max_thresh].max())
+    
+    return depth, bds, bds_raw, skymask

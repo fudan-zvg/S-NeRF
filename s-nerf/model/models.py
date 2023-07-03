@@ -36,9 +36,8 @@ class MipNerfModel(nn.Module):
                  proposal_loss=False,
                  N_fine=128,
                  semantic=False,
-                 semantic_class_num=0,):x
+                 semantic_class_num=0,):
         super(MipNerfModel, self).__init__()
-
         self.n_levels = n_levels
         self.stop_level_grad = stop_level_grad
         self.deg_view = deg_view

@@ -65,7 +65,7 @@ def load_nuscenes(args):
     semantic = None
     seg_masks = None
     H, W = args.H, args.W
-    depth_gts, bds, bds_raw,skymask = load_depth_map(args.datadir,H,W,bd_factor=args.bds_factor,sky_mask=args.skymask)
+    depth_gts, bds, bds_raw, skymask = load_depth_map(args.datadir,H,W,bd_factor=args.bds_factor,sky_mask=args.skymask)
     
     if args.flow:
         assert args.bds_factor == 0

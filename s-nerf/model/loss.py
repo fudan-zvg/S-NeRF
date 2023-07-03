@@ -10,7 +10,6 @@ from utils.vis_tools import visualize_gray
 from utils.pytorch_msssim import msssim, ssim
 from torchvision import models
 from dataloader.load_nuscenes import recenter_poses
-from model.confidence import calc_final_confidence
 
 def edge_aware_loss_v2(rgb, disp,skymask=None):
     """Computes the smoothness loss for a disparity image
@@ -270,7 +269,6 @@ def reproj_err(modes, proj_coord, depends, ret_full=False, loss_type='l1', vgg_l
 
 
 def get_reproj_conf(modes, proj_coord, base_depends, repj_depends,flow_depends=None, vgg_loss=None, tau=0.2,loss_type='l1'):
-    
     base_img, base_depth, base_pose, base_intr = base_depends
     repj_imgs, repj_depths, repj_poses, repj_intrs = repj_depends
     if flow_depends is not None:
@@ -330,6 +328,7 @@ def get_reproj_conf(modes, proj_coord, base_depends, repj_depends,flow_depends=N
 
 
 def calc_depth_loss(args, backcam_mask, target_depth, pred_distance, pred_distance_coarse, depth_loss_fn, confidence_depends):
+    from model.confidence import calc_final_confidence
     img_i, cam_index = confidence_depends[2], confidence_depends[3]
     target_mask = target_depth!=0
     target_depth = target_depth.unsqueeze(-1)
@@ -339,7 +338,7 @@ def calc_depth_loss(args, backcam_mask, target_depth, pred_distance, pred_distan
     depth_loss = depth_loss_fn(pred_distance[target_mask], pred_distance_coarse[target_mask], target_depth[target_mask])
 
     if(args.depth_conf): # this time is the single image training mode
-        confidence = calc_final_confidence(args, target_mask, confidence_depends):
+        confidence = calc_final_confidence(args, target_mask, confidence_depends)
         depth_loss *= confidence
     
     if args.backcam and cam_index[img_i] == 0:

@@ -32,7 +32,7 @@ def train(rank=None, world_size=None, seed=None):
     _DEVICE = init_devices(args, rank, world_size)
 
     #*---------------------=====| Load DataSet |=====-------------------------*# 
-    train_depends, bds, render_depends, splits = load_dataset(args, _DEVICE)
+    train_depends, bds, render_depends, splits = load_dataset(args)
     images, poses, viewc, intrinsics, depth_gts, flow, cam_index, skymask, seg_masks, semantic = train_depends
     if semantic:
         semantic_index, semantic_labels = semantic 

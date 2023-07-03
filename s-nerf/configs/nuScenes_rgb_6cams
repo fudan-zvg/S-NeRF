@@ -1,0 +1,65 @@
+expname = scene_0061
+basedir = ./exp
+datadir = ../data/scenes/scene-0061
+dataset_type = nuscenes
+
+random_sample = True
+N_rgb = 4096
+N_depth = 2048
+N_samples = 64
+N_importance = 64
+
+use_viewdirs = True
+raw_noise_std = 1e0
+
+chunk = 8192
+netchunk = 16384
+netdepth = 4
+
+i_testset = 200000
+i_video = 200000
+i_weight = 5000
+N_iters = 200000
+
+no_ndc = True
+depth_loss = False
+weighted_loss = False
+depth_lambda = 0.2
+
+car_sample_n = 9
+block_bg = True
+pose_refine = True
+colmap = False
+datahold = 4
+render_test = True
+lindisp = False 
+N_samples = 128
+white_bkgd = False
+weight_decay_mult = 0.
+H = 900
+W = 1600
+coarse_loss_mult = 0.1
+no_align = 1
+disable_integration = 0
+ray_shape = 'cone'
+no_warp_sample = 0 
+fn = 1
+radius = 3.
+transform_idx = 0
+real = True
+depth_conf = True
+disparity_depth = True
+cam_num = 6
+conf_num = 1
+randomized = True
+bds_factor = 0.
+near_far = True
+hidden_layer = 1024
+rgb_layer = 3
+density_noise = 0.
+backcam = True
+smooth_loss = True
+smooth_lambda = 0.02
+precompute_conf = True
+vgg_loss = True
+half_train = True
