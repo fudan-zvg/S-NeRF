@@ -175,7 +175,7 @@ def load_semantic(path):
     
 def load_depth_map(path, H, W, bd_factor=.75, sky_mask=False):
     skymask = None
-    depth_dir = os.path.join(path,'depth')
+    depth_dir = os.path.join(path, 'depths')
     imgdir = depth_dir
     img_files = sorted(os.listdir(imgdir), key=lambda x : int(x.split('.')[0]))
     imgfiles = [os.path.join(imgdir, f) for f in img_files if f.endswith('JPG') or f.endswith('jpg') or f.endswith('png')]

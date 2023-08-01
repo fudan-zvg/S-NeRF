@@ -152,3 +152,6 @@ web
 *.pyc
 *.sh
 .vscode
+
+*.pth
+*.tar

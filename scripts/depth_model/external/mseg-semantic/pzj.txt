@@ -1,0 +1,480 @@
+Namespace(config='mseg_semantic/config/test/default_config_1080_ms.yaml', file_save='mseg_semantic/experiments', opts=['model_name', 'mseg-3m', 'model_path', 'mseg_semantic/checkpoints/mseg-3m.pth', 'input_file', './mseg_semantic/data_pzj', 'save_folder', './mseg_semantic/result_pzj'])
+arch: hrnet
+base_size: 1080
+batch_size_val: 1
+dataset: data_pzj
+has_prediction: False
+ignore_label: 255
+img_name_unique: False
+index_start: 0
+index_step: 0
+input_file: ./mseg_semantic/data_pzj
+layers: 50
+model_name: mseg-3m
+model_path: mseg_semantic/checkpoints/mseg-3m.pth
+network_name: None
+save_folder: ./mseg_semantic/result_pzj
+scales: [0.5, 0.75, 1.0, 1.25, 1.5, 1.75]
+small: True
+split: val
+test_gpu: [0, 1, 2, 3, 4, 5, 6, 7]
+test_h: 713
+test_w: 713
+version: 4.0
+vis_freq: 20
+workers: 16
+zoom_factor: 8
+[2022-09-25 10:06:43,320 INFO universal_demo.py line 50 7501] arch: hrnet
+base_size: 1080
+batch_size_val: 1
+dataset: data_pzj
+has_prediction: False
+ignore_label: 255
+img_name_unique: True
+index_start: 0
+index_step: 0
+input_file: ./mseg_semantic/data_pzj
+layers: 50
+model_name: mseg-3m
+model_path: mseg_semantic/checkpoints/mseg-3m.pth
+network_name: None
+print_freq: 10
+save_folder: ./mseg_semantic/result_pzj
+scales: [0.5, 0.75, 1.0, 1.25, 1.5, 1.75]
+small: True
+split: test
+test_gpu: [0, 1, 2, 3, 4, 5, 6, 7]
+test_h: 713
+test_w: 713
+u_classes: ['backpack', 'umbrella', 'bag', 'tie', 'suitcase', 'case', 'bird', 'cat', 'dog', 'horse', 'sheep', 'cow', 'elephant', 'bear', 'zebra', 'giraffe', 'animal_other', 'microwave', 'radiator', 'oven', 'toaster', 'storage_tank', 'conveyor_belt', 'sink', 'refrigerator', 'washer_dryer', 'fan', 'dishwasher', 'toilet', 'bathtub', 'shower', 'tunnel', 'bridge', 'pier_wharf', 'tent', 'building', 'ceiling', 'laptop', 'keyboard', 'mouse', 'remote', 'cell phone', 'television', 'floor', 'stage', 'banana', 'apple', 'sandwich', 'orange', 'broccoli', 'carrot', 'hot_dog', 'pizza', 'donut', 'cake', 'fruit_other', 'food_other', 'chair_other', 'armchair', 'swivel_chair', 'stool', 'seat', 'couch', 'trash_can', 'potted_plant', 'nightstand', 'bed', 'table', 'pool_table', 'barrel', 'desk', 'ottoman', 'wardrobe', 'crib', 'basket', 'chest_of_drawers', 'bookshelf', 'counter_other', 'bathroom_counter', 'kitchen_island', 'door', 'light_other', 'lamp', 'sconce', 'chandelier', 'mirror', 'whiteboard', 'shelf', 'stairs', 'escalator', 'cabinet', 'fireplace', 'stove', 'arcade_machine', 'gravel', 'platform', 'playingfield', 'railroad', 'road', 'snow', 'sidewalk_pavement', 'runway', 'terrain', 'book', 'box', 'clock', 'vase', 'scissors', 'plaything_other', 'teddy_bear', 'hair_dryer', 'toothbrush', 'painting', 'poster', 'bulletin_board', 'bottle', 'cup', 'wine_glass', 'knife', 'fork', 'spoon', 'bowl', 'tray', 'range_hood', 'plate', 'person', 'rider_other', 'bicyclist', 'motorcyclist', 'paper', 'streetlight', 'road_barrier', 'mailbox', 'cctv_camera', 'junction_box', 'traffic_sign', 'traffic_light', 'fire_hydrant', 'parking_meter', 'bench', 'bike_rack', 'billboard', 'sky', 'pole', 'fence', 'railing_banister', 'guard_rail', 'mountain_hill', 'rock', 'frisbee', 'skis', 'snowboard', 'sports_ball', 'kite', 'baseball_bat', 'baseball_glove', 'skateboard', 'surfboard', 'tennis_racket', 'net', 'base', 'sculpture', 'column', 'fountain', 'awning', 'apparel', 'banner', 'flag', 'blanket', 'curtain_other', 'shower_curtain', 'pillow', 'towel', 'rug_floormat', 'vegetation', 'bicycle', 'car', 'autorickshaw', 'motorcycle', 'airplane', 'bus', 'train', 'truck', 'trailer', 'boat_ship', 'slow_wheeled_object', 'river_lake', 'sea', 'water_other', 'swimming_pool', 'waterfall', 'wall', 'window', 'window_blind']
+version: 4.0
+vis_freq: 20
+workers: 16
+zoom_factor: 8
+[2022-09-25 10:06:43,320 INFO universal_demo.py line 51 7501] => creating model ...
+[2022-09-25 10:06:49,008 INFO inference_task.py line 284 7501] => loading checkpoint 'mseg_semantic/checkpoints/mseg-3m.pth'
+[2022-09-25 10:06:54,112 INFO inference_task.py line 290 7501] => loaded checkpoint 'mseg_semantic/checkpoints/mseg-3m.pth'
+[2022-09-25 10:06:54,119 INFO inference_task.py line 302 7501] >>>>>>>>>>>>>> Start inference task >>>>>>>>>>>>>
+Totally 378 samples in test set.
+Checking image&label pair test list done!
+[2022-09-25 10:06:55,273 INFO inference_task.py line 457 7501] On image 0
+/home/liwenye/miniconda3/envs/myenv/lib/python3.7/site-packages/torch/nn/functional.py:3635: UserWarning: Default upsampling behavior when mode=bilinear is changed to align_corners=False since 0.4.0. Please specify align_corners=True if the old behavior is desired. See the documentation of nn.Upsample for details.
+  "See the documentation of nn.Upsample for details.".format(mode)
+/home/liwenye/miniconda3/envs/myenv/lib/python3.7/site-packages/torch/nn/functional.py:3509: UserWarning: nn.functional.upsample is deprecated. Use nn.functional.interpolate instead.
+  warnings.warn("nn.functional.upsample is deprecated. Use nn.functional.interpolate instead.")
+[2022-09-25 10:08:01,399 INFO inference_task.py line 457 7501] On image 1
+[2022-09-25 10:09:00,047 INFO inference_task.py line 457 7501] On image 2
+[2022-09-25 10:09:53,831 INFO inference_task.py line 457 7501] On image 3
+[2022-09-25 10:10:50,080 INFO inference_task.py line 457 7501] On image 4
+[2022-09-25 10:11:45,934 INFO inference_task.py line 457 7501] On image 5
+[2022-09-25 10:12:45,747 INFO inference_task.py line 457 7501] On image 6
+[2022-09-25 10:13:42,325 INFO inference_task.py line 457 7501] On image 7
+[2022-09-25 10:14:36,137 INFO inference_task.py line 457 7501] On image 8
+[2022-09-25 10:15:29,480 INFO inference_task.py line 457 7501] On image 9
+[2022-09-25 10:16:29,114 INFO inference_task.py line 485 7501] Test: [10/378] Data 0.006 (0.129) Batch 59.634 (57.497).
+[2022-09-25 10:16:29,115 INFO inference_task.py line 457 7501] On image 10
+[2022-09-25 10:17:24,640 INFO inference_task.py line 457 7501] On image 11
+[2022-09-25 10:18:28,600 INFO inference_task.py line 457 7501] On image 12
+[2022-09-25 10:19:27,546 INFO inference_task.py line 457 7501] On image 13
+[2022-09-25 10:20:31,894 INFO inference_task.py line 457 7501] On image 14
+[2022-09-25 10:21:28,388 INFO inference_task.py line 457 7501] On image 15
+[2022-09-25 10:22:31,868 INFO inference_task.py line 457 7501] On image 16
+[2022-09-25 10:23:36,035 INFO inference_task.py line 457 7501] On image 17
+[2022-09-25 10:24:39,795 INFO inference_task.py line 457 7501] On image 18
+[2022-09-25 10:25:41,572 INFO inference_task.py line 457 7501] On image 19
+[2022-09-25 10:26:40,920 INFO inference_task.py line 485 7501] Test: [20/378] Data 0.006 (0.068) Batch 59.348 (59.339).
+[2022-09-25 10:26:40,921 INFO inference_task.py line 457 7501] On image 20
+[2022-09-25 10:27:36,039 INFO inference_task.py line 457 7501] On image 21
+[2022-09-25 10:28:33,798 INFO inference_task.py line 457 7501] On image 22
+[2022-09-25 10:29:28,521 INFO inference_task.py line 457 7501] On image 23
+[2022-09-25 10:30:24,132 INFO inference_task.py line 457 7501] On image 24
+[2022-09-25 10:31:19,039 INFO inference_task.py line 457 7501] On image 25
+[2022-09-25 10:32:13,063 INFO inference_task.py line 457 7501] On image 26
+[2022-09-25 10:33:06,482 INFO inference_task.py line 457 7501] On image 27
+[2022-09-25 10:34:01,764 INFO inference_task.py line 457 7501] On image 28
+[2022-09-25 10:34:55,586 INFO inference_task.py line 457 7501] On image 29
+[2022-09-25 10:35:51,111 INFO inference_task.py line 485 7501] Test: [30/378] Data 0.005 (0.047) Batch 55.525 (57.899).
+[2022-09-25 10:35:51,112 INFO inference_task.py line 457 7501] On image 30
+[2022-09-25 10:36:48,755 INFO inference_task.py line 457 7501] On image 31
+[2022-09-25 10:37:50,960 INFO inference_task.py line 457 7501] On image 32
+[2022-09-25 10:38:50,104 INFO inference_task.py line 457 7501] On image 33
+[2022-09-25 10:39:43,931 INFO inference_task.py line 457 7501] On image 34
+[2022-09-25 10:40:40,372 INFO inference_task.py line 457 7501] On image 35
+[2022-09-25 10:41:34,953 INFO inference_task.py line 457 7501] On image 36
+[2022-09-25 10:42:28,957 INFO inference_task.py line 457 7501] On image 37
+[2022-09-25 10:43:22,625 INFO inference_task.py line 457 7501] On image 38
+[2022-09-25 10:44:16,961 INFO inference_task.py line 457 7501] On image 39
+[2022-09-25 10:45:11,334 INFO inference_task.py line 485 7501] Test: [40/378] Data 0.006 (0.037) Batch 54.373 (57.430).
+[2022-09-25 10:45:11,335 INFO inference_task.py line 457 7501] On image 40
+[2022-09-25 10:46:06,278 INFO inference_task.py line 457 7501] On image 41
+[2022-09-25 10:46:59,981 INFO inference_task.py line 457 7501] On image 42
+[2022-09-25 10:47:53,807 INFO inference_task.py line 457 7501] On image 43
+[2022-09-25 10:48:47,816 INFO inference_task.py line 457 7501] On image 44
+[2022-09-25 10:49:46,628 INFO inference_task.py line 457 7501] On image 45
+[2022-09-25 10:50:40,431 INFO inference_task.py line 457 7501] On image 46
+[2022-09-25 10:51:34,067 INFO inference_task.py line 457 7501] On image 47
+[2022-09-25 10:52:28,300 INFO inference_task.py line 457 7501] On image 48
+[2022-09-25 10:53:22,156 INFO inference_task.py line 457 7501] On image 49
+[2022-09-25 10:54:15,942 INFO inference_task.py line 485 7501] Test: [50/378] Data 0.006 (0.031) Batch 53.787 (56.836).
+[2022-09-25 10:54:15,943 INFO inference_task.py line 457 7501] On image 50
+[2022-09-25 10:55:10,216 INFO inference_task.py line 457 7501] On image 51
+[2022-09-25 10:56:04,248 INFO inference_task.py line 457 7501] On image 52
+[2022-09-25 10:56:57,993 INFO inference_task.py line 457 7501] On image 53
+[2022-09-25 10:57:52,432 INFO inference_task.py line 457 7501] On image 54
+[2022-09-25 10:58:46,229 INFO inference_task.py line 457 7501] On image 55
+[2022-09-25 10:59:40,618 INFO inference_task.py line 457 7501] On image 56
+[2022-09-25 11:00:34,582 INFO inference_task.py line 457 7501] On image 57
+[2022-09-25 11:01:28,333 INFO inference_task.py line 457 7501] On image 58
+[2022-09-25 11:02:22,048 INFO inference_task.py line 457 7501] On image 59
+[2022-09-25 11:03:21,623 INFO inference_task.py line 485 7501] Test: [60/378] Data 0.006 (0.026) Batch 59.575 (56.458).
+[2022-09-25 11:03:21,623 INFO inference_task.py line 457 7501] On image 60
+[2022-09-25 11:04:16,721 INFO inference_task.py line 457 7501] On image 61
+[2022-09-25 11:05:12,569 INFO inference_task.py line 457 7501] On image 62
+[2022-09-25 11:06:07,182 INFO inference_task.py line 457 7501] On image 63
+[2022-09-25 11:07:01,757 INFO inference_task.py line 457 7501] On image 64
+[2022-09-25 11:07:55,702 INFO inference_task.py line 457 7501] On image 65
+[2022-09-25 11:08:49,671 INFO inference_task.py line 457 7501] On image 66
+[2022-09-25 11:09:43,586 INFO inference_task.py line 457 7501] On image 67
+[2022-09-25 11:10:37,879 INFO inference_task.py line 457 7501] On image 68
+[2022-09-25 11:11:32,105 INFO inference_task.py line 457 7501] On image 69
+[2022-09-25 11:12:26,492 INFO inference_task.py line 485 7501] Test: [70/378] Data 0.006 (0.024) Batch 54.386 (56.176).
+[2022-09-25 11:12:26,492 INFO inference_task.py line 457 7501] On image 70
+[2022-09-25 11:13:20,989 INFO inference_task.py line 457 7501] On image 71
+[2022-09-25 11:14:15,219 INFO inference_task.py line 457 7501] On image 72
+[2022-09-25 11:15:09,450 INFO inference_task.py line 457 7501] On image 73
+[2022-09-25 11:16:06,010 INFO inference_task.py line 457 7501] On image 74
+[2022-09-25 11:17:01,534 INFO inference_task.py line 457 7501] On image 75
+[2022-09-25 11:18:00,203 INFO inference_task.py line 457 7501] On image 76
+[2022-09-25 11:18:54,390 INFO inference_task.py line 457 7501] On image 77
+[2022-09-25 11:19:48,557 INFO inference_task.py line 457 7501] On image 78
+[2022-09-25 11:20:42,262 INFO inference_task.py line 457 7501] On image 79
+[2022-09-25 11:21:36,118 INFO inference_task.py line 485 7501] Test: [80/378] Data 0.006 (0.021) Batch 53.856 (56.025).
+[2022-09-25 11:21:36,118 INFO inference_task.py line 457 7501] On image 80
+[2022-09-25 11:22:33,004 INFO inference_task.py line 457 7501] On image 81
+[2022-09-25 11:23:29,747 INFO inference_task.py line 457 7501] On image 82
+[2022-09-25 11:24:23,894 INFO inference_task.py line 457 7501] On image 83
+[2022-09-25 11:25:18,965 INFO inference_task.py line 457 7501] On image 84
+[2022-09-25 11:26:15,246 INFO inference_task.py line 457 7501] On image 85
+[2022-09-25 11:27:10,682 INFO inference_task.py line 457 7501] On image 86
+[2022-09-25 11:28:06,581 INFO inference_task.py line 457 7501] On image 87
+[2022-09-25 11:29:01,637 INFO inference_task.py line 457 7501] On image 88
+[2022-09-25 11:29:55,683 INFO inference_task.py line 457 7501] On image 89
+[2022-09-25 11:30:49,781 INFO inference_task.py line 485 7501] Test: [90/378] Data 0.006 (0.020) Batch 54.098 (55.952).
+[2022-09-25 11:30:49,781 INFO inference_task.py line 457 7501] On image 90
+[2022-09-25 11:31:44,061 INFO inference_task.py line 457 7501] On image 91
+[2022-09-25 11:32:37,824 INFO inference_task.py line 457 7501] On image 92
+[2022-09-25 11:33:31,737 INFO inference_task.py line 457 7501] On image 93
+[2022-09-25 11:34:25,732 INFO inference_task.py line 457 7501] On image 94
+[2022-09-25 11:35:20,484 INFO inference_task.py line 457 7501] On image 95
+[2022-09-25 11:36:14,643 INFO inference_task.py line 457 7501] On image 96
+[2022-09-25 11:37:08,725 INFO inference_task.py line 457 7501] On image 97
+[2022-09-25 11:38:03,225 INFO inference_task.py line 457 7501] On image 98
+[2022-09-25 11:38:56,867 INFO inference_task.py line 457 7501] On image 99
+[2022-09-25 11:39:50,545 INFO inference_task.py line 485 7501] Test: [100/378] Data 0.006 (0.018) Batch 53.678 (55.764).
+[2022-09-25 11:39:50,545 INFO inference_task.py line 457 7501] On image 100
+[2022-09-25 11:40:44,243 INFO inference_task.py line 457 7501] On image 101
+[2022-09-25 11:41:38,473 INFO inference_task.py line 457 7501] On image 102
+[2022-09-25 11:42:33,259 INFO inference_task.py line 457 7501] On image 103
+[2022-09-25 11:43:28,408 INFO inference_task.py line 457 7501] On image 104
+[2022-09-25 11:44:22,201 INFO inference_task.py line 457 7501] On image 105
+[2022-09-25 11:45:15,760 INFO inference_task.py line 457 7501] On image 106
+[2022-09-25 11:46:10,130 INFO inference_task.py line 457 7501] On image 107
+[2022-09-25 11:47:03,764 INFO inference_task.py line 457 7501] On image 108
+[2022-09-25 11:47:57,483 INFO inference_task.py line 457 7501] On image 109
+[2022-09-25 11:48:51,170 INFO inference_task.py line 485 7501] Test: [110/378] Data 0.006 (0.017) Batch 53.688 (55.609).
+[2022-09-25 11:48:51,171 INFO inference_task.py line 457 7501] On image 110
+[2022-09-25 11:49:45,630 INFO inference_task.py line 457 7501] On image 111
+[2022-09-25 11:50:40,739 INFO inference_task.py line 457 7501] On image 112
+[2022-09-25 11:51:40,297 INFO inference_task.py line 457 7501] On image 113
+[2022-09-25 11:52:35,264 INFO inference_task.py line 457 7501] On image 114
+[2022-09-25 11:53:33,458 INFO inference_task.py line 457 7501] On image 115
+[2022-09-25 11:54:27,896 INFO inference_task.py line 457 7501] On image 116
+[2022-09-25 11:55:22,643 INFO inference_task.py line 457 7501] On image 117
+[2022-09-25 11:56:17,412 INFO inference_task.py line 457 7501] On image 118
+[2022-09-25 11:57:11,893 INFO inference_task.py line 457 7501] On image 119
+[2022-09-25 11:58:06,021 INFO inference_task.py line 485 7501] Test: [120/378] Data 0.006 (0.016) Batch 54.128 (55.599).
+[2022-09-25 11:58:06,021 INFO inference_task.py line 457 7501] On image 120
+[2022-09-25 11:59:00,420 INFO inference_task.py line 457 7501] On image 121
+[2022-09-25 11:59:55,170 INFO inference_task.py line 457 7501] On image 122
+[2022-09-25 12:00:48,461 INFO inference_task.py line 457 7501] On image 123
+[2022-09-25 12:01:41,027 INFO inference_task.py line 457 7501] On image 124
+[2022-09-25 12:02:33,232 INFO inference_task.py line 457 7501] On image 125
+[2022-09-25 12:03:25,528 INFO inference_task.py line 457 7501] On image 126
+[2022-09-25 12:04:17,844 INFO inference_task.py line 457 7501] On image 127
+[2022-09-25 12:05:10,740 INFO inference_task.py line 457 7501] On image 128
+[2022-09-25 12:06:03,194 INFO inference_task.py line 457 7501] On image 129
+[2022-09-25 12:06:55,815 INFO inference_task.py line 485 7501] Test: [130/378] Data 0.006 (0.015) Batch 52.621 (55.397).
+[2022-09-25 12:06:55,815 INFO inference_task.py line 457 7501] On image 130
+[2022-09-25 12:07:48,659 INFO inference_task.py line 457 7501] On image 131
+[2022-09-25 12:08:41,601 INFO inference_task.py line 457 7501] On image 132
+[2022-09-25 12:09:34,622 INFO inference_task.py line 457 7501] On image 133
+[2022-09-25 12:10:26,420 INFO inference_task.py line 457 7501] On image 134
+[2022-09-25 12:11:18,223 INFO inference_task.py line 457 7501] On image 135
+[2022-09-25 12:12:09,737 INFO inference_task.py line 457 7501] On image 136
+[2022-09-25 12:13:01,778 INFO inference_task.py line 457 7501] On image 137
+[2022-09-25 12:13:53,989 INFO inference_task.py line 457 7501] On image 138
+[2022-09-25 12:14:46,393 INFO inference_task.py line 457 7501] On image 139
+[2022-09-25 12:15:38,934 INFO inference_task.py line 485 7501] Test: [140/378] Data 0.006 (0.015) Batch 52.541 (55.177).
+[2022-09-25 12:15:38,935 INFO inference_task.py line 457 7501] On image 140
+[2022-09-25 12:16:31,344 INFO inference_task.py line 457 7501] On image 141
+[2022-09-25 12:17:23,759 INFO inference_task.py line 457 7501] On image 142
+[2022-09-25 12:18:16,637 INFO inference_task.py line 457 7501] On image 143
+[2022-09-25 12:19:08,940 INFO inference_task.py line 457 7501] On image 144
+[2022-09-25 12:20:01,039 INFO inference_task.py line 457 7501] On image 145
+[2022-09-25 12:20:53,144 INFO inference_task.py line 457 7501] On image 146
+[2022-09-25 12:21:45,191 INFO inference_task.py line 457 7501] On image 147
+[2022-09-25 12:22:37,484 INFO inference_task.py line 457 7501] On image 148
+[2022-09-25 12:23:30,115 INFO inference_task.py line 457 7501] On image 149
+[2022-09-25 12:24:22,366 INFO inference_task.py line 485 7501] Test: [150/378] Data 0.006 (0.014) Batch 52.252 (54.988).
+[2022-09-25 12:24:22,367 INFO inference_task.py line 457 7501] On image 150
+[2022-09-25 12:25:15,864 INFO inference_task.py line 457 7501] On image 151
+[2022-09-25 12:26:11,259 INFO inference_task.py line 457 7501] On image 152
+[2022-09-25 12:27:04,760 INFO inference_task.py line 457 7501] On image 153
+[2022-09-25 12:27:58,209 INFO inference_task.py line 457 7501] On image 154
+[2022-09-25 12:28:51,256 INFO inference_task.py line 457 7501] On image 155
+[2022-09-25 12:29:43,887 INFO inference_task.py line 457 7501] On image 156
+[2022-09-25 12:30:36,561 INFO inference_task.py line 457 7501] On image 157
+[2022-09-25 12:31:29,285 INFO inference_task.py line 457 7501] On image 158
+[2022-09-25 12:32:21,469 INFO inference_task.py line 457 7501] On image 159
+[2022-09-25 12:33:14,203 INFO inference_task.py line 485 7501] Test: [160/378] Data 0.006 (0.014) Batch 52.735 (54.875).
+[2022-09-25 12:33:14,204 INFO inference_task.py line 457 7501] On image 160
+[2022-09-25 12:34:07,124 INFO inference_task.py line 457 7501] On image 161
+[2022-09-25 12:35:00,376 INFO inference_task.py line 457 7501] On image 162
+[2022-09-25 12:35:53,008 INFO inference_task.py line 457 7501] On image 163
+[2022-09-25 12:36:46,173 INFO inference_task.py line 457 7501] On image 164
+[2022-09-25 12:37:38,895 INFO inference_task.py line 457 7501] On image 165
+[2022-09-25 12:38:31,452 INFO inference_task.py line 457 7501] On image 166
+[2022-09-25 12:39:23,963 INFO inference_task.py line 457 7501] On image 167
+[2022-09-25 12:40:17,792 INFO inference_task.py line 457 7501] On image 168
+[2022-09-25 12:41:10,281 INFO inference_task.py line 457 7501] On image 169
+[2022-09-25 12:42:03,582 INFO inference_task.py line 485 7501] Test: [170/378] Data 0.006 (0.013) Batch 53.302 (54.761).
+[2022-09-25 12:42:03,583 INFO inference_task.py line 457 7501] On image 170
+[2022-09-25 12:42:55,925 INFO inference_task.py line 457 7501] On image 171
+[2022-09-25 12:43:48,070 INFO inference_task.py line 457 7501] On image 172
+[2022-09-25 12:44:40,641 INFO inference_task.py line 457 7501] On image 173
+[2022-09-25 12:45:33,188 INFO inference_task.py line 457 7501] On image 174
+[2022-09-25 12:46:25,552 INFO inference_task.py line 457 7501] On image 175
+[2022-09-25 12:47:17,982 INFO inference_task.py line 457 7501] On image 176
+[2022-09-25 12:48:10,677 INFO inference_task.py line 457 7501] On image 177
+[2022-09-25 12:49:03,404 INFO inference_task.py line 457 7501] On image 178
+[2022-09-25 12:49:55,929 INFO inference_task.py line 457 7501] On image 179
+[2022-09-25 12:50:49,139 INFO inference_task.py line 485 7501] Test: [180/378] Data 0.006 (0.013) Batch 53.210 (54.639).
+[2022-09-25 12:50:49,139 INFO inference_task.py line 457 7501] On image 180
+[2022-09-25 12:51:41,542 INFO inference_task.py line 457 7501] On image 181
+[2022-09-25 12:52:34,112 INFO inference_task.py line 457 7501] On image 182
+[2022-09-25 12:53:27,391 INFO inference_task.py line 457 7501] On image 183
+[2022-09-25 12:54:20,423 INFO inference_task.py line 457 7501] On image 184
+[2022-09-25 12:55:12,988 INFO inference_task.py line 457 7501] On image 185
+[2022-09-25 12:56:05,966 INFO inference_task.py line 457 7501] On image 186
+[2022-09-25 12:57:02,731 INFO inference_task.py line 457 7501] On image 187
+[2022-09-25 12:58:00,948 INFO inference_task.py line 457 7501] On image 188
+[2022-09-25 12:58:53,640 INFO inference_task.py line 457 7501] On image 189
+[2022-09-25 12:59:47,739 INFO inference_task.py line 485 7501] Test: [190/378] Data 0.006 (0.012) Batch 54.100 (54.598).
+[2022-09-25 12:59:47,740 INFO inference_task.py line 457 7501] On image 190
+[2022-09-25 13:00:39,997 INFO inference_task.py line 457 7501] On image 191
+[2022-09-25 13:01:32,620 INFO inference_task.py line 457 7501] On image 192
+[2022-09-25 13:02:25,292 INFO inference_task.py line 457 7501] On image 193
+[2022-09-25 13:03:17,723 INFO inference_task.py line 457 7501] On image 194
+[2022-09-25 13:04:10,386 INFO inference_task.py line 457 7501] On image 195
+[2022-09-25 13:05:02,937 INFO inference_task.py line 457 7501] On image 196
+[2022-09-25 13:05:55,493 INFO inference_task.py line 457 7501] On image 197
+[2022-09-25 13:06:47,866 INFO inference_task.py line 457 7501] On image 198
+[2022-09-25 13:07:40,541 INFO inference_task.py line 457 7501] On image 199
+[2022-09-25 13:08:32,759 INFO inference_task.py line 485 7501] Test: [200/378] Data 0.006 (0.012) Batch 52.218 (54.493).
+[2022-09-25 13:08:32,760 INFO inference_task.py line 457 7501] On image 200
+[2022-09-25 13:09:26,356 INFO inference_task.py line 457 7501] On image 201
+[2022-09-25 13:10:18,977 INFO inference_task.py line 457 7501] On image 202
+[2022-09-25 13:11:12,797 INFO inference_task.py line 457 7501] On image 203
+[2022-09-25 13:12:05,502 INFO inference_task.py line 457 7501] On image 204
+[2022-09-25 13:12:58,421 INFO inference_task.py line 457 7501] On image 205
+[2022-09-25 13:13:51,206 INFO inference_task.py line 457 7501] On image 206
+[2022-09-25 13:14:44,095 INFO inference_task.py line 457 7501] On image 207
+[2022-09-25 13:15:36,305 INFO inference_task.py line 457 7501] On image 208
+[2022-09-25 13:16:28,429 INFO inference_task.py line 457 7501] On image 209
+[2022-09-25 13:17:20,661 INFO inference_task.py line 485 7501] Test: [210/378] Data 0.006 (0.012) Batch 52.232 (54.412).
+[2022-09-25 13:17:20,662 INFO inference_task.py line 457 7501] On image 210
+[2022-09-25 13:18:12,937 INFO inference_task.py line 457 7501] On image 211
+[2022-09-25 13:19:05,037 INFO inference_task.py line 457 7501] On image 212
+[2022-09-25 13:19:57,562 INFO inference_task.py line 457 7501] On image 213
+[2022-09-25 13:20:50,651 INFO inference_task.py line 457 7501] On image 214
+[2022-09-25 13:21:45,543 INFO inference_task.py line 457 7501] On image 215
+[2022-09-25 13:22:37,627 INFO inference_task.py line 457 7501] On image 216
+[2022-09-25 13:23:30,769 INFO inference_task.py line 457 7501] On image 217
+[2022-09-25 13:24:23,345 INFO inference_task.py line 457 7501] On image 218
+[2022-09-25 13:25:16,233 INFO inference_task.py line 457 7501] On image 219
+[2022-09-25 13:26:09,198 INFO inference_task.py line 485 7501] Test: [220/378] Data 0.006 (0.011) Batch 52.965 (54.341).
+[2022-09-25 13:26:09,198 INFO inference_task.py line 457 7501] On image 220
+[2022-09-25 13:27:01,533 INFO inference_task.py line 457 7501] On image 221
+[2022-09-25 13:27:53,702 INFO inference_task.py line 457 7501] On image 222
+[2022-09-25 13:28:46,003 INFO inference_task.py line 457 7501] On image 223
+[2022-09-25 13:29:38,643 INFO inference_task.py line 457 7501] On image 224
+[2022-09-25 13:30:31,141 INFO inference_task.py line 457 7501] On image 225
+[2022-09-25 13:31:25,469 INFO inference_task.py line 457 7501] On image 226
+[2022-09-25 13:32:25,617 INFO inference_task.py line 457 7501] On image 227
+[2022-09-25 13:33:18,261 INFO inference_task.py line 457 7501] On image 228
+[2022-09-25 13:34:11,005 INFO inference_task.py line 457 7501] On image 229
+[2022-09-25 13:35:04,686 INFO inference_task.py line 485 7501] Test: [230/378] Data 0.006 (0.011) Batch 53.682 (54.307).
+[2022-09-25 13:35:04,687 INFO inference_task.py line 457 7501] On image 230
+[2022-09-25 13:35:56,931 INFO inference_task.py line 457 7501] On image 231
+[2022-09-25 13:36:49,382 INFO inference_task.py line 457 7501] On image 232
+[2022-09-25 13:37:42,377 INFO inference_task.py line 457 7501] On image 233
+[2022-09-25 13:38:35,497 INFO inference_task.py line 457 7501] On image 234
+[2022-09-25 13:39:28,357 INFO inference_task.py line 457 7501] On image 235
+[2022-09-25 13:40:22,095 INFO inference_task.py line 457 7501] On image 236
+[2022-09-25 13:41:14,591 INFO inference_task.py line 457 7501] On image 237
+[2022-09-25 13:42:07,318 INFO inference_task.py line 457 7501] On image 238
+[2022-09-25 13:43:00,659 INFO inference_task.py line 457 7501] On image 239
+[2022-09-25 13:43:53,196 INFO inference_task.py line 485 7501] Test: [240/378] Data 0.006 (0.011) Batch 52.537 (54.246).
+[2022-09-25 13:43:53,196 INFO inference_task.py line 457 7501] On image 240
+[2022-09-25 13:44:45,692 INFO inference_task.py line 457 7501] On image 241
+[2022-09-25 13:45:38,239 INFO inference_task.py line 457 7501] On image 242
+[2022-09-25 13:46:30,907 INFO inference_task.py line 457 7501] On image 243
+[2022-09-25 13:47:23,445 INFO inference_task.py line 457 7501] On image 244
+[2022-09-25 13:48:16,034 INFO inference_task.py line 457 7501] On image 245
+[2022-09-25 13:49:08,700 INFO inference_task.py line 457 7501] On image 246
+[2022-09-25 13:50:00,801 INFO inference_task.py line 457 7501] On image 247
+[2022-09-25 13:50:53,923 INFO inference_task.py line 457 7501] On image 248
+[2022-09-25 13:51:46,520 INFO inference_task.py line 457 7501] On image 249
+[2022-09-25 13:52:38,975 INFO inference_task.py line 485 7501] Test: [250/378] Data 0.006 (0.011) Batch 52.455 (54.179).
+[2022-09-25 13:52:38,976 INFO inference_task.py line 457 7501] On image 250
+[2022-09-25 13:53:31,559 INFO inference_task.py line 457 7501] On image 251
+[2022-09-25 13:54:24,374 INFO inference_task.py line 457 7501] On image 252
+[2022-09-25 13:55:17,755 INFO inference_task.py line 457 7501] On image 253
+[2022-09-25 13:56:10,880 INFO inference_task.py line 457 7501] On image 254
+[2022-09-25 13:57:04,158 INFO inference_task.py line 457 7501] On image 255
+[2022-09-25 13:57:56,867 INFO inference_task.py line 457 7501] On image 256
+[2022-09-25 13:58:49,881 INFO inference_task.py line 457 7501] On image 257
+[2022-09-25 13:59:42,577 INFO inference_task.py line 457 7501] On image 258
+[2022-09-25 14:00:34,919 INFO inference_task.py line 457 7501] On image 259
+[2022-09-25 14:01:27,431 INFO inference_task.py line 485 7501] Test: [260/378] Data 0.006 (0.011) Batch 52.512 (54.128).
+[2022-09-25 14:01:27,432 INFO inference_task.py line 457 7501] On image 260
+[2022-09-25 14:02:20,431 INFO inference_task.py line 457 7501] On image 261
+[2022-09-25 14:03:12,877 INFO inference_task.py line 457 7501] On image 262
+[2022-09-25 14:04:05,784 INFO inference_task.py line 457 7501] On image 263
+[2022-09-25 14:04:58,297 INFO inference_task.py line 457 7501] On image 264
+[2022-09-25 14:05:50,498 INFO inference_task.py line 457 7501] On image 265
+[2022-09-25 14:06:42,745 INFO inference_task.py line 457 7501] On image 266
+[2022-09-25 14:07:35,569 INFO inference_task.py line 457 7501] On image 267
+[2022-09-25 14:08:30,211 INFO inference_task.py line 457 7501] On image 268
+[2022-09-25 14:09:23,494 INFO inference_task.py line 457 7501] On image 269
+[2022-09-25 14:10:16,577 INFO inference_task.py line 485 7501] Test: [270/378] Data 0.005 (0.010) Batch 53.082 (54.083).
+[2022-09-25 14:10:16,577 INFO inference_task.py line 457 7501] On image 270
+[2022-09-25 14:11:14,798 INFO inference_task.py line 457 7501] On image 271
+[2022-09-25 14:12:07,908 INFO inference_task.py line 457 7501] On image 272
+[2022-09-25 14:13:00,825 INFO inference_task.py line 457 7501] On image 273
+[2022-09-25 14:13:53,564 INFO inference_task.py line 457 7501] On image 274
+[2022-09-25 14:14:51,426 INFO inference_task.py line 457 7501] On image 275
+[2022-09-25 14:15:44,489 INFO inference_task.py line 457 7501] On image 276
+[2022-09-25 14:16:38,336 INFO inference_task.py line 457 7501] On image 277
+[2022-09-25 14:17:30,941 INFO inference_task.py line 457 7501] On image 278
+[2022-09-25 14:18:23,432 INFO inference_task.py line 457 7501] On image 279
+[2022-09-25 14:19:16,302 INFO inference_task.py line 485 7501] Test: [280/378] Data 0.006 (0.010) Batch 52.869 (54.079).
+[2022-09-25 14:19:16,302 INFO inference_task.py line 457 7501] On image 280
+[2022-09-25 14:20:09,579 INFO inference_task.py line 457 7501] On image 281
+[2022-09-25 14:21:02,309 INFO inference_task.py line 457 7501] On image 282
+[2022-09-25 14:21:54,449 INFO inference_task.py line 457 7501] On image 283
+[2022-09-25 14:22:46,612 INFO inference_task.py line 457 7501] On image 284
+[2022-09-25 14:23:44,039 INFO inference_task.py line 457 7501] On image 285
+[2022-09-25 14:24:36,527 INFO inference_task.py line 457 7501] On image 286
+[2022-09-25 14:25:29,656 INFO inference_task.py line 457 7501] On image 287
+[2022-09-25 14:26:23,907 INFO inference_task.py line 457 7501] On image 288
+[2022-09-25 14:27:16,403 INFO inference_task.py line 457 7501] On image 289
+[2022-09-25 14:28:09,140 INFO inference_task.py line 485 7501] Test: [290/378] Data 0.006 (0.010) Batch 52.737 (54.052).
+[2022-09-25 14:28:09,140 INFO inference_task.py line 457 7501] On image 290
+[2022-09-25 14:29:03,594 INFO inference_task.py line 457 7501] On image 291
+[2022-09-25 14:29:56,797 INFO inference_task.py line 457 7501] On image 292
+[2022-09-25 14:30:49,526 INFO inference_task.py line 457 7501] On image 293
+[2022-09-25 14:31:42,814 INFO inference_task.py line 457 7501] On image 294
+[2022-09-25 14:32:35,743 INFO inference_task.py line 457 7501] On image 295
+[2022-09-25 14:33:29,003 INFO inference_task.py line 457 7501] On image 296
+[2022-09-25 14:34:21,728 INFO inference_task.py line 457 7501] On image 297
+[2022-09-25 14:35:14,599 INFO inference_task.py line 457 7501] On image 298
+[2022-09-25 14:36:07,688 INFO inference_task.py line 457 7501] On image 299
+[2022-09-25 14:37:00,989 INFO inference_task.py line 485 7501] Test: [300/378] Data 0.006 (0.010) Batch 53.301 (54.023).
+[2022-09-25 14:37:00,990 INFO inference_task.py line 457 7501] On image 300
+[2022-09-25 14:37:53,203 INFO inference_task.py line 457 7501] On image 301
+[2022-09-25 14:38:45,975 INFO inference_task.py line 457 7501] On image 302
+[2022-09-25 14:39:38,520 INFO inference_task.py line 457 7501] On image 303
+[2022-09-25 14:40:33,835 INFO inference_task.py line 457 7501] On image 304
+[2022-09-25 14:41:26,968 INFO inference_task.py line 457 7501] On image 305
+[2022-09-25 14:42:19,571 INFO inference_task.py line 457 7501] On image 306
+[2022-09-25 14:43:12,551 INFO inference_task.py line 457 7501] On image 307
+[2022-09-25 14:44:06,026 INFO inference_task.py line 457 7501] On image 308
+[2022-09-25 14:44:58,877 INFO inference_task.py line 457 7501] On image 309
+[2022-09-25 14:45:51,756 INFO inference_task.py line 485 7501] Test: [310/378] Data 0.006 (0.010) Batch 52.880 (53.992).
+[2022-09-25 14:45:51,756 INFO inference_task.py line 457 7501] On image 310
+[2022-09-25 14:46:43,899 INFO inference_task.py line 457 7501] On image 311
+[2022-09-25 14:47:35,918 INFO inference_task.py line 457 7501] On image 312
+[2022-09-25 14:48:28,409 INFO inference_task.py line 457 7501] On image 313
+[2022-09-25 14:49:20,934 INFO inference_task.py line 457 7501] On image 314
+[2022-09-25 14:50:13,544 INFO inference_task.py line 457 7501] On image 315
+[2022-09-25 14:51:06,294 INFO inference_task.py line 457 7501] On image 316
+[2022-09-25 14:51:58,501 INFO inference_task.py line 457 7501] On image 317
+[2022-09-25 14:52:51,008 INFO inference_task.py line 457 7501] On image 318
+[2022-09-25 14:53:43,494 INFO inference_task.py line 457 7501] On image 319
+[2022-09-25 14:54:38,095 INFO inference_task.py line 485 7501] Test: [320/378] Data 0.005 (0.010) Batch 54.601 (53.950).
+[2022-09-25 14:54:38,095 INFO inference_task.py line 457 7501] On image 320
+[2022-09-25 14:55:31,365 INFO inference_task.py line 457 7501] On image 321
+[2022-09-25 14:56:25,252 INFO inference_task.py line 457 7501] On image 322
+[2022-09-25 14:57:19,900 INFO inference_task.py line 457 7501] On image 323
+[2022-09-25 14:58:13,363 INFO inference_task.py line 457 7501] On image 324
+[2022-09-25 14:59:05,893 INFO inference_task.py line 457 7501] On image 325
+[2022-09-25 14:59:58,599 INFO inference_task.py line 457 7501] On image 326
+[2022-09-25 15:00:51,618 INFO inference_task.py line 457 7501] On image 327
+[2022-09-25 15:01:44,280 INFO inference_task.py line 457 7501] On image 328
+[2022-09-25 15:02:36,860 INFO inference_task.py line 457 7501] On image 329
+[2022-09-25 15:03:29,413 INFO inference_task.py line 485 7501] Test: [330/378] Data 0.006 (0.010) Batch 52.553 (53.925).
+[2022-09-25 15:03:29,413 INFO inference_task.py line 457 7501] On image 330
+[2022-09-25 15:04:21,945 INFO inference_task.py line 457 7501] On image 331
+[2022-09-25 15:05:15,283 INFO inference_task.py line 457 7501] On image 332
+[2022-09-25 15:06:08,055 INFO inference_task.py line 457 7501] On image 333
+[2022-09-25 15:07:04,411 INFO inference_task.py line 457 7501] On image 334
+[2022-09-25 15:08:00,032 INFO inference_task.py line 457 7501] On image 335
+[2022-09-25 15:08:56,121 INFO inference_task.py line 457 7501] On image 336
+[2022-09-25 15:09:48,474 INFO inference_task.py line 457 7501] On image 337
+[2022-09-25 15:10:41,276 INFO inference_task.py line 457 7501] On image 338
+[2022-09-25 15:11:33,778 INFO inference_task.py line 457 7501] On image 339
+[2022-09-25 15:12:26,568 INFO inference_task.py line 485 7501] Test: [340/378] Data 0.006 (0.009) Batch 52.790 (53.919).
+[2022-09-25 15:12:26,568 INFO inference_task.py line 457 7501] On image 340
+[2022-09-25 15:13:19,266 INFO inference_task.py line 457 7501] On image 341
+[2022-09-25 15:14:11,510 INFO inference_task.py line 457 7501] On image 342
+[2022-09-25 15:15:04,354 INFO inference_task.py line 457 7501] On image 343
+[2022-09-25 15:15:56,670 INFO inference_task.py line 457 7501] On image 344
+[2022-09-25 15:16:49,176 INFO inference_task.py line 457 7501] On image 345
+[2022-09-25 15:17:41,413 INFO inference_task.py line 457 7501] On image 346
+[2022-09-25 15:18:33,674 INFO inference_task.py line 457 7501] On image 347
+[2022-09-25 15:19:25,981 INFO inference_task.py line 457 7501] On image 348
+[2022-09-25 15:20:19,145 INFO inference_task.py line 457 7501] On image 349
+[2022-09-25 15:21:11,644 INFO inference_task.py line 485 7501] Test: [350/378] Data 0.005 (0.009) Batch 52.499 (53.879).
+[2022-09-25 15:21:11,644 INFO inference_task.py line 457 7501] On image 350
+[2022-09-25 15:22:04,479 INFO inference_task.py line 457 7501] On image 351
+[2022-09-25 15:22:57,592 INFO inference_task.py line 457 7501] On image 352
+[2022-09-25 15:23:49,950 INFO inference_task.py line 457 7501] On image 353
+[2022-09-25 15:24:42,714 INFO inference_task.py line 457 7501] On image 354
+[2022-09-25 15:25:35,346 INFO inference_task.py line 457 7501] On image 355
+[2022-09-25 15:26:27,607 INFO inference_task.py line 457 7501] On image 356
+[2022-09-25 15:27:19,868 INFO inference_task.py line 457 7501] On image 357
+[2022-09-25 15:28:12,144 INFO inference_task.py line 457 7501] On image 358
+[2022-09-25 15:29:04,352 INFO inference_task.py line 457 7501] On image 359
+[2022-09-25 15:29:56,768 INFO inference_task.py line 485 7501] Test: [360/378] Data 0.005 (0.009) Batch 52.416 (53.841).
+[2022-09-25 15:29:56,768 INFO inference_task.py line 457 7501] On image 360
+[2022-09-25 15:30:48,891 INFO inference_task.py line 457 7501] On image 361
+[2022-09-25 15:31:40,965 INFO inference_task.py line 457 7501] On image 362
+[2022-09-25 15:32:33,411 INFO inference_task.py line 457 7501] On image 363
+[2022-09-25 15:33:26,483 INFO inference_task.py line 457 7501] On image 364
+[2022-09-25 15:34:20,000 INFO inference_task.py line 457 7501] On image 365
+[2022-09-25 15:35:12,627 INFO inference_task.py line 457 7501] On image 366
+[2022-09-25 15:36:04,924 INFO inference_task.py line 457 7501] On image 367
+[2022-09-25 15:36:57,383 INFO inference_task.py line 457 7501] On image 368
+[2022-09-25 15:37:50,116 INFO inference_task.py line 457 7501] On image 369
+[2022-09-25 15:38:42,355 INFO inference_task.py line 485 7501] Test: [370/378] Data 0.005 (0.009) Batch 52.239 (53.806).
+[2022-09-25 15:38:42,355 INFO inference_task.py line 457 7501] On image 370
+[2022-09-25 15:39:34,362 INFO inference_task.py line 457 7501] On image 371
+[2022-09-25 15:40:26,596 INFO inference_task.py line 457 7501] On image 372
+[2022-09-25 15:41:18,648 INFO inference_task.py line 457 7501] On image 373
+[2022-09-25 15:42:10,648 INFO inference_task.py line 457 7501] On image 374
+[2022-09-25 15:43:02,461 INFO inference_task.py line 457 7501] On image 375
+[2022-09-25 15:43:54,876 INFO inference_task.py line 457 7501] On image 376
+[2022-09-25 15:44:47,013 INFO inference_task.py line 457 7501] On image 377
+[2022-09-25 15:45:39,519 INFO inference_task.py line 485 7501] Test: [378/378] Data 0.006 (0.009) Batch 52.506 (53.771).
+[2022-09-25 15:45:39,689 INFO inference_task.py line 330 7501] <<<<<<<<<<< Inference task completed <<<<<<<<<<<<<<

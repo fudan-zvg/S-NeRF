@@ -22,7 +22,7 @@ We introduce S-NeRF, a robust system to synthesizing large unbounded street view
 ## TODOs
 - [x] Env Installation
 - [x] Pose Preparation Scripts
-- [ ] Depth & Flow Preparation Scripts
+- [x] Depth & Flow Preparation Scripts
 - [ ] Code for training and testing
 - [ ] Foreground Vehicle Reconstruction
 - [ ] Pretrained models (Demo Scenes)
@@ -55,7 +55,7 @@ data/
 └── scenes/
 ```
 
-2. prepare the poses, images and depth in S-NeRF format
+2. Prepare the poses, images and depth in S-NeRF format
 - nuScenes
 ```
 python scripts/nuscenes_preprocess.py 
@@ -68,6 +68,8 @@ python scripts/nuscenes_preprocess.py
 python scripts/waymo_preprocess.py
 ```
 
+3. Prepare the depth data  
+[Depth Preparation Instruction](/scripts/depth_model/README.md)
 
 ### Training Snerf 
 1. Dataset type: \
@@ -75,8 +77,8 @@ Waymo or nuScenes\
 - Waymo:`5cams`, args.waymo = True\
 - nuScenes:`6cams`, args.backcam = True
 
-## Citation
 
+## Citation
 If you find this work useful, please cite:
 ```
 @inproceedings{ziyang2023snerf,
