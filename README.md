@@ -69,13 +69,14 @@ python scripts/waymo_preprocess.py
 ```
 
 3. Prepare the depth data  
-Put the first smaple token of the scene in `./data/depth/sample_tokens.txt` Then follow the [Depth Preparation Instruction](/scripts/depth_model/README.md)
+Put the first smaple token of the scene in `./data/depth/sample_tokens.txt`   
+Then follow the [Depth Preparation Instruction](/scripts/depth_model/README.md)
 
 
 ### Training Snerf 
-1. Dataset type: \
-Waymo or nuScenes\
-- Waymo:`5cams`, args.waymo = True\
+1. Dataset type: 
+Waymo or nuScenes
+- Waymo:`5cams`, args.waymo = True
 - nuScenes:`6cams`, args.backcam = True
 
 
