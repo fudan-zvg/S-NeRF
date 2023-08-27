@@ -32,14 +32,12 @@ if lib_path not in sys.path:
     sys.path.insert(0, lib_path)
 if root_path not in sys.path:
     sys.path.insert(0, root_path)
-# print(sys.path)
 
 from sepflow import SepFlow
 from utils.utils import InputPadder
 
 
 DEVICE = 'cuda'
-
 def load_image(imfile):
     if not os.path.exists(imfile):
         return None
@@ -89,11 +87,9 @@ def map_pointcloud_to_image(nusc, camera_token, height, accumulate, channel, min
     # cam_record = nusc.get('sample', cam_sample_token)
     # points_token = cam_record['data']['LIDAR_TOP']
     # camera_token = cam_record['data']['CAM_FRONT']
-        
     # Read the data.
     cam_sample_rec = nusc.get('sample', nusc.get('sample_data', camera_token)['sample_token'])
     points_token = cam_sample_rec['data']['LIDAR_TOP']
-    
     pointsensor = nusc.get('sample_data', points_token)
     cam = nusc.get('sample_data', camera_token)
     
@@ -353,33 +349,16 @@ def one_cam_process(args):
         args.dir_data = os.path.join(this_dir, '..', 'temp')
         os.makedirs(args.dir_data, exist_ok=True)
 
-    dir_nuscenes = '../../data/nuScenes/trainval/'
+    data_root = '../../data/'
+    dir_nuscenes = os.path.join(data_root, f'nuScenes/{args.version.split("-")[-1]}/')
     nusc = NuScenes(version=args.version, dataroot = dir_nuscenes, verbose=False)
-    sample_token = args.sample
-    sample_rec = nusc.get('sample', sample_token)
-    for _ in range(args.offset):
-        sample_rec = nusc.get('sample', sample_rec['next'])    
-
-    # Part 1.
-    if args.scene is None:
-        args.scene = sample_rec['scene_token']
-    scene_token = args.scene
-    scene_rec = nusc.get('scene', scene_token)
-    sample_data_token = nusc.get("sample", scene_rec["first_sample_token"])["data"][channel]
-
-    sweeps_list = []
-    while True:
-        sweeps_list.append(sample_data_token)
-        sample_data_token = nusc.get('sample_data', sample_data_token)['next']
-        if sample_data_token is None or sample_data_token == '':
-            break
-        
-    sweep_token = sample_rec['data'][channel]
-    args.start_idx = sweeps_list.index(sweep_token)
-    args.end_idx = args.start_idx + args.sweeps_n        
-
-    data_split = {'all_indices': sweeps_list}
-    torch.save(data_split, os.path.join(args.dir_data, 'data_sweeps_%s.tar' % channel))
+    
+    # Part 1. Get Sweeps Tokens.
+    scene_name = args.scene_name
+    channel_tokens_file = os.path.join(data_root, 'scenes', scene_name, 'channel_tokens.json')
+    with open(channel_tokens_file, 'r') as f:
+        channel_tokens = json.load(f)
+    sweeps_tokens = channel_tokens[channel]
 
     # Part 2.
     dir_data_out = join(args.dir_data, '6cam_data', channel)
@@ -395,23 +374,11 @@ def one_cam_process(args):
         os.remove(f)
     print('removed %d old files in output folder' % len(f_list))
 
-
-    sweeps_tokens = torch.load(join(args.dir_data,'data_sweeps_%s.tar' % channel))['all_indices'] 
-    start_idx = args.start_idx
-    end_idx = len(sweeps_tokens) - 1 if args.end_idx == -1 else args.end_idx
-            
     ct = 0         
-    for sweeps_token in sweeps_tokens[start_idx:end_idx+2]:   # For baoxian.
-
+    for sweeps_token in sweeps_tokens:  
         cam_token = sweeps_token
         cam_data = nusc.get('sample_data', cam_token)
-        
         if cam_data['next'] and cam_data['prev']:
-                
-            # cam_token2 = cam_data['next']                    
-            # cam_data2 = nusc.get('sample_data', cam_token2)
-            # cam_path2 = join(nusc.dataroot, cam_data2['filename'])
-            # im2 = io.imread(cam_path2)
             cam_path1 = join(nusc.dataroot, cam_data['filename'])
             im1 = io.imread(cam_path1)
             
@@ -425,29 +392,29 @@ def one_cam_process(args):
             cam_path0 = join(nusc.dataroot, cam_data0['filename'])
             im0 = io.imread(cam_path0)
             
-            io.imsave(join(dir_data_out, '%05d_im.jpg' % (ct + start_idx)), im1)
-            io.imsave(join(dir_data_out, '%05d_im_next.jpg' % (ct + start_idx)), im2)
-            io.imsave(join(dir_data_out, '%05d_im_prev.jpg' % (ct + start_idx)), im0)
+            io.imsave(join(dir_data_out, '%05d_im.jpg' % (ct)), im1)
+            io.imsave(join(dir_data_out, '%05d_im_next.jpg' % (ct)), im2)
+            io.imsave(join(dir_data_out, '%05d_im_prev.jpg' % (ct)), im0)
         
         #################### Modified on 2023/1/11 #####################            
         else:
             cam_path1 = join(nusc.dataroot, cam_data['filename'])
             im1 = io.imread(cam_path1)            
-            io.imsave(join(dir_data_out, '%05d_im.jpg' % (ct + start_idx)), im1)
+            io.imsave(join(dir_data_out, '%05d_im.jpg' % (ct)), im1)
             
             if cam_data['next']:
                 cam_token2 = cam_data['next']        
                 cam_data2 = nusc.get('sample_data', cam_token2)
                 cam_path2 = join(nusc.dataroot, cam_data2['filename'])
                 im2 = io.imread(cam_path2)                
-                io.imsave(join(dir_data_out, '%05d_im_next.jpg' % (ct + start_idx)), im2)
+                io.imsave(join(dir_data_out, '%05d_im_next.jpg' % (ct)), im2)
                 
             if cam_data['prev']:
                 cam_token_prev = cam_data['prev']
                 cam_data0 = nusc.get('sample_data', cam_token_prev)
                 cam_path0 = join(nusc.dataroot, cam_data0['filename'])
                 im0 = io.imread(cam_path0)
-                io.imsave(join(dir_data_out, '%05d_im_prev.jpg' % (ct + start_idx)), im0)
+                io.imsave(join(dir_data_out, '%05d_im_prev.jpg' % (ct)), im0)
         
         #################### Modified on 2023/1/11 #####################            
             
@@ -541,14 +508,9 @@ def one_cam_process(args):
 
     # Part 4.
     dir_data_out = join(args.dir_data, '6cam_data', channel)
-    sweeps_tokens = torch.load(join(args.dir_data,'data_sweeps_%s.tar' % channel))['all_indices'] 
-            
-    start_idx = args.start_idx
-    end_idx = len(sweeps_tokens)-1 if args.end_idx == -1 else args.end_idx
 
     ct = 0         
-    for sweeps_token in sweeps_tokens[start_idx:end_idx+2]:  # For baoxian.
-
+    for sweeps_token in sweeps_tokens:  
         cam_token = sweeps_token
         cam_data = nusc.get('sample_data', cam_token)
         
@@ -568,7 +530,7 @@ def one_cam_process(args):
             T = current_2_ref_matrix(nusc, cam_token, cam_token1)            
         #################### Modified on 2023/1/11 #####################                
         
-        np.savez(join(dir_data_out, '%05d_matrix.npz' % (ct + start_idx)), K=K, T=T)    
+        np.savez(join(dir_data_out, '%05d_matrix.npz' % (ct)), K=K, T=T)    
             
         ct += 1
         print('Save matrix %d/%d' % ( ct, len(sweeps_tokens[:-1]) ) )
@@ -576,46 +538,34 @@ def one_cam_process(args):
     # Part 5.
     N_total = len(sweeps_tokens)
     print('Total sample number:', N_total)
-    if start_idx == None:
-        start_idx = 0
-
-    if end_idx == None:
-        end_idx = N_total - 1
-
-    if end_idx > N_total - 1 :
-        end_idx = N_total - 1
-
-
     ct = 0
     with open(join(dir_data_out, 'points_n.txt'), 'w') as f:
         running_mean = 0
-        for sweeps_token in sweeps_tokens[start_idx:end_idx]:
-            
+        for sweeps_token in sweeps_tokens:
             start = timer()
-            
             #################### Modified on 2023/1/11 #####################                
             if channel in ['CAM_FRONT', 'CAM_FRONT_LEFT', 'CAM_FRONT_RIGHT']:
                 mode = 'next'
-                flow_f_name = join(dir_data_out, '%05d_flow_next.npy' % (ct+start_idx))
+                flow_f_name = join(dir_data_out, '%05d_flow_next.npy' % (ct))
                 if os.path.exists(flow_f_name):
                     im_flow = np.load(flow_f_name)
                 else:
                     mode = 'prev'
-                    flow_f_name = join(dir_data_out, '%05d_flow_prev.npy' % (ct+start_idx))
+                    flow_f_name = join(dir_data_out, '%05d_flow_prev.npy' % (ct))
                     im_flow = np.load(flow_f_name)
             elif channel in ['CAM_BACK', 'CAM_BACK_LEFT', 'CAM_BACK_RIGHT']:
                 mode = "prev"
-                flow_f_name = join(dir_data_out, '%05d_flow_prev.npy' % (ct+start_idx))
+                flow_f_name = join(dir_data_out, '%05d_flow_prev.npy' % (ct))
                 if os.path.exists(flow_f_name):
                     im_flow = np.load(flow_f_name)
                 else:
                     mode = "next"
-                    flow_f_name = join(dir_data_out, '%05d_flow_next.npy' % (ct+start_idx))
+                    flow_f_name = join(dir_data_out, '%05d_flow_next.npy' % (ct))
                     im_flow = np.load(flow_f_name)
             
             #################### Modified on 2023/1/11 #####################                        
                     
-            # matrix = np.load(join(dir_data_out, '%05d_matrix.npz' % (ct+start_idx)))
+            # matrix = np.load(join(dir_data_out, '%05d_matrix.npz' % (ct)))
             # seg = np.load(join(dir_data_out, '%05d_seg.npy' % ct))
             # K = matrix['K']
                         
@@ -666,16 +616,16 @@ def one_cam_process(args):
             gt = points2im(current_points)        
         
             
-            Image.fromarray(gt).save(join(dir_data_out, '%05d_gtim.png' % (ct+start_idx)))
+            Image.fromarray(gt).save(join(dir_data_out, '%05d_gtim.png' % (ct)))
                     
             ct += 1
-            print('compute depth %d/%d' % ( ct, end_idx - start_idx + 1 ) )
+            print(f'compute depth {ct}/{len(sweeps_tokens)}')
             
             end = timer()
             t = end-start     
             print('Time used: %.1f s' % t)
             
-            f.write(str(ct+start_idx) + ':  ' + str(np.sum(mask)))
+            f.write(str(ct) + ':  ' + str(np.sum(mask)))
             f.write('\n')
             
             
@@ -736,7 +686,7 @@ def one_cam_process(args):
         f.write('\n')
         f.close() 
     
-    idx_list = list(range(start_idx, end_idx))
+    idx_list = list(range(0, len(sweeps_tokens)))
     out_dir = join(args.dir_data, 'prepared_sweeps_data', channel, 'json')
     if not exists(out_dir):
         os.makedirs(out_dir)
@@ -804,7 +754,7 @@ def one_cam_process(args):
     ct = 0
     if True:
         mask_fname_list = sorted(os.listdir(out_dir))
-        for sweeps_token in sweeps_tokens[start_idx:end_idx]:
+        for sweeps_token in sweeps_tokens:
             
             if channel in ['CAM_FRONT', 'CAM_FRONT_LEFT', 'CAM_FRONT_RIGHT']:
                 mode = "next"
@@ -827,47 +777,31 @@ def one_cam_process(args):
             another_points_2D = proj_2_another(nusc, pc_current, cam_token, mode)
             
             if mode == 'next':
-                im_flow = torch.tensor(np.load(join(dir_data_out, '%05d_flow_next.npy' % (ct+start_idx))))
+                im_flow = torch.tensor(np.load(join(dir_data_out, '%05d_flow_next.npy' % (ct))))
             elif mode == 'prev':
-                im_flow = torch.tensor(np.load(join(dir_data_out, '%05d_flow_prev.npy' % (ct+start_idx))))
+                im_flow = torch.tensor(np.load(join(dir_data_out, '%05d_flow_prev.npy' % (ct))))
             else:
-                im_flow = torch.tensor(np.load(join(dir_data_out, '%05d_flow.npy' % (ct+start_idx))))
+                im_flow = torch.tensor(np.load(join(dir_data_out, '%05d_flow.npy' % (ct))))
             mask = consistency_check_new(points_2D[:2, :], another_points_2D, im_flow)
             
             depth_im[mask] = 0
             depth_im = depth_im.astype(np.uint16)
             depth_im[mask_im == 142] = 200 * 256
-            Image.fromarray(depth_im).save(join(depth_out, '%05d_finalim.png' % (ct+start_idx)))
+            Image.fromarray(depth_im).save(join(depth_out, '%05d_finalim.png' % (ct)))
             
             ct += 1
-            print('refine depth %d/%d' % ( ct, end_idx - start_idx + 1 ) )
+            print(f'refine depth {ct}/{len(sweeps_tokens)}')
                      
-        
-    
-    else:
-        for sweeps_token in sweeps_tokens[start_idx:end_idx]:
-            depth_im = np.array(Image.open(join(dir_data_out, '%010d.png' % ct)))
-            Image.fromarray(depth_im).save(join(depth_out, '%05d_finalim.png' % (ct+start_idx)))
-            
-            ct += 1
-            print('remain depth %d/%d' % ( ct, end_idx - start_idx + 1 ) )
-        
 
 if __name__ == '__main__':
-    
     parser = argparse.ArgumentParser()
     parser.add_argument('--dir_data', type=str)
     parser.add_argument('--version', type=str, default='v1.0-trainval')
-    parser.add_argument('--scene', type=str, default=None)
-    parser.add_argument('--start_idx', type=int)
-    parser.add_argument('--end_idx', type=int)
+    parser.add_argument('--scene_name', type=str) 
     parser.add_argument('--model')
     parser.add_argument('--small', action='store_true', help='use small model')
     parser.add_argument('--mixed_precision', action='store_true', help='use mixed precision')
     parser.add_argument('--alternate_corr', action='store_true', help='use efficent correlation implementation')   
-    parser.add_argument('--sample', type=str) 
-    parser.add_argument('--sweeps_n', type=int)
-    parser.add_argument('--offset', type=int, default=0)
     parser.add_argument('--channel', type=str)
     parser.add_argument('--gpu_for_NLSPN', type=str)
     parser.add_argument('--depth_completion_mode', type=str, default="NLSPN")

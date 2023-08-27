@@ -45,7 +45,7 @@ pip install -r requiremnets.txt
 ```
 
 ### Data Preparation
-1. Prepare Dataset
+1. Prepare Dataset according to the following file tree
 ```
 data/
 ├── nuScenes/
@@ -53,6 +53,14 @@ data/
 │   └── trainval/
 └── waymo/
 └── scenes/
+```
+
+2. Put scene name and its token in `scene_dict.json`
+```json
+{
+    "scene-0916": "325cef682f064c55a255f2625c533b75",
+    ...
+}
 ```
 
 2. Prepare the poses, images and depth in S-NeRF format

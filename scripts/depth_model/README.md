@@ -30,10 +30,8 @@
     3. [Sparse-Depth-Completion/Saved/model_best_epoch.pth.tar](https://drive.google.com/file/d/181zn-qcuJp2z4k0SIK-qQV55TgrUisLS/view?usp=sharing)
 
 ## Run the pipeline
-    1. Set sweeps_n / tokens.txt path in `scripts/run.py`
-    2. Set param in `scripts/run_pipeline.py`
-    3. Run `python scripts/run.py`
-    4. The output will be saved in `./output`
+    1. Run `python scripts/run.py`
+    2. The output will be saved in data/scenes/depths
 
 
 

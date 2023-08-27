@@ -7,6 +7,9 @@ __pycache__/
 *.so
 *.ipynb
 
+data/
+output/
+temp/
 background/configs/
 foreground/configs/
 background/data/
