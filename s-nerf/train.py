@@ -26,7 +26,7 @@ DEBUG = False
 np.random.seed(0)
 Rays = collections.namedtuple('Rays', ('origins', 'directions', 'viewdirs', 'radii', 'lossmult', 'near', 'far','app'))        
 
-def train(rank=None, world_size=None, seed=None):
+def train(rank=None, world_size=None,seed=None):
     parser = config_parser()
     args = parser.parse_args()
     _DEVICE = init_devices(args, rank, world_size)
@@ -35,6 +35,12 @@ def train(rank=None, world_size=None, seed=None):
     train_depends, bds, render_depends, splits = load_dataset(args)
     images, poses, viewc, intrinsics, depth_gts, flow, cam_index, skymask, seg_masks, semantic = train_depends
     
+    images = torch.tensor(images, device=_DEVICE)
+    depth_gts = torch.tensor(depth_gts, device=_DEVICE)
+    poses = torch.tensor(poses, device=_DEVICE)
+    intrinsics = torch.tensor(intrinsics, device=_DEVICE)
+    skymask = torch.tensor(skymask, device=_DEVICE)
+
     if semantic:
         semantic_index, semantic_labels = semantic 
     
@@ -79,7 +85,7 @@ def train(rank=None, world_size=None, seed=None):
     
     all_conf_maps = None
     if args.depth_conf and args.precompute_conf:
-        all_conf_maps = Conf.precompute_conf_map(args, cam_index, images, depth_gts,poses, intrinsics, i_train)
+        all_conf_maps = Conf.precompute_conf_map(args, cam_index, images, depth_gts, poses, intrinsics, i_train)
         print('Precompute Confidence Map')
     
     if args.pose_refine:
@@ -88,13 +94,14 @@ def train(rank=None, world_size=None, seed=None):
     #*  -------------------------=====| Sampling Rays |=====------------------------- *# 
     
     rays_loader = NuscenesDataLoader(args, 
-                                     images, 
-                                     i_train, 
-                                     poses, 
-                                     intrinsics, 
-                                     depth_gts, 
-                                     bds,
-                                     cam_index,
+                                     images=images, 
+                                     i_train=i_train, 
+                                     poses=poses, 
+                                     intrinsics=intrinsics, 
+                                     depth_gts=depth_gts, 
+                                     near=bds[0],
+                                     far=bds[1],
+                                     camera_index=cam_index,
                                      batch_n=args.N_rgb, 
                                      device=_DEVICE)
     rays_iter = iter(rays_loader)
@@ -154,8 +161,9 @@ def train(rank=None, world_size=None, seed=None):
         target_depth = target_depth[:args.N_rgb]
         target_s = target_s[:args.N_rgb,:]
 
+        backcam_mask = torch.ones_like(sel_coords[:,0]).bool()
         if args.backcam and cam_index[img_i]==0:
-            backcam_mask = sel_coords[:,0]<750
+            backcam_mask = sel_coords[:,0] < 750
             if args.seg_mask:
                 seg_mask = seg_masks[img_i][sel_coords[:,0], sel_coords[:,1]]
                 backcam_mask = backcam_mask & (seg_mask==0)

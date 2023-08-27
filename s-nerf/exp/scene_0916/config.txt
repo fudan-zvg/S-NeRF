@@ -22,8 +22,8 @@ i_weight = 5000
 N_iters = 200000
 
 no_ndc = True
-depth_loss = False
-weighted_loss = False
+depth_loss = True
+weighted_loss = True
 depth_lambda = 0.2
 
 car_sample_n = 9

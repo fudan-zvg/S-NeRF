@@ -93,7 +93,7 @@ def load_nuscenes(args):
     else:
         cam_index=[0]*images.shape[0]    
     
-    train_depends = [images, poses, K, depth_gts, flow, cam_index, skymask, seg_masks, semantic]
+    train_depends = [images, poses, None, K, depth_gts, flow, cam_index, skymask, seg_masks, semantic]
     
     i_val = i_test = [i for i in range(images.shape[0])][::args.datahold]
     i_train = np.array([i for i in np.arange(int(images.shape[0])) if

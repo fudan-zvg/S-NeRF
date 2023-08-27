@@ -16,18 +16,20 @@ class VGGLoss(nn.Module):
     def forward(self, x, y):            
         x = x.permute(2,0,1).float()
         y = y.permute(2,0,1).float()
-        x_vgg, y_vgg = self.vgg(x), self.vgg(y)
+        x_vgg, y_vgg = self.vgg(x[None,...]), self.vgg(y[None,...])
         H,W=x.shape[1:]
         loss = torch.zeros((H,W)).to(self.device)
         for i in range(len(x_vgg)-1):
-            feat_x, feat_y = x_vgg[i], y_vgg[i].detach()
+            feat_x, feat_y = x_vgg[i].detach(), y_vgg[i].detach()
             if(i > 0):
-                feat_x = F.upsample(x_vgg[i].unsqueeze(0), mode='bilinear', size=(H,W), align_corners=True)
-                feat_y = F.upsample(y_vgg[i].unsqueeze(0), mode='bilinear', size=(H,W), align_corners=True)
+                feat_x = F.upsample(x_vgg[i], mode='bilinear', size=(H,W), align_corners=True)
+                feat_y = F.upsample(y_vgg[i], mode='bilinear', size=(H,W), align_corners=True)
                 feat_x = feat_x.squeeze(0)
                 feat_y = feat_y.squeeze(0)
 
             f_loss = self.weights[i] * self.criterion(feat_x, feat_y)
+            if f_loss.shape[0] == 1:
+                f_loss = f_loss.squeeze(0)
             loss += f_loss.mean(0)
         return loss
         
@@ -73,12 +75,11 @@ class Confidence(nn.Module):
     '''
     Save the confidence to the given path
     '''
-    def precompute_conf_map(self, args,cam_index,images, depth_gts,poses,intrinsics,i_train,flow=None):
+    def precompute_conf_map(self, args, cam_index,images, depth_gts, poses, intrinsics, i_train, flow=None):
         conf_maps=[]
         for i in range(len(i_train)):
             img_i=i_train[i]
-            base_depends, repj_depends,flow_depends=select_conf_depends(args, img_i, cam_index, images, depth_gts, poses, intrinsics, i_train, pose_param_net=None,flow=flow)
-            import pdb; pdb.set_trace()
+            base_depends, repj_depends,flow_depends = select_conf_depends(args, img_i, cam_index, images, depth_gts, poses, intrinsics, i_train, pose_param_net=None,flow=flow)
             conf_map = self.forward(base_depends, repj_depends,img_i,flow_depends,ret_dict=True)
             conf_maps.append(conf_map)
         return conf_maps
@@ -159,19 +160,12 @@ def select_conf_depends(args, img_i, cam_index, images, depth_gts, poses, intrin
         
         flow_depends=torch.tensor(flow_imgs),torch.tensor(flow_depths),flow_poses,flow_intrs,torch.tensor(repj_flows)
    
-
-    repj_imgs = torch.tensor(np.stack(repj_imgs))
-    repj_poses = torch.stack(repj_poses)
-    repj_intrs = torch.stack(repj_intrs)
-    repj_depths = torch.tensor(np.stack(repj_depths))
     
     if(args.flow):
         assert args.conf_num == 1
     
-    base_depends = torch.tensor(base_img), torch.tensor(base_depth), base_pose, base_intr
+    base_depends = base_img, base_depth, base_pose, base_intr
     repj_depends = repj_imgs, repj_depths, repj_poses, repj_intrs
-
-
     return base_depends, repj_depends, flow_depends
 
 def build_confidence_model(args, N, device):
