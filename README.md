@@ -23,7 +23,7 @@ We introduce S-NeRF, a robust system to synthesizing large unbounded street view
 - [x] Env Installation
 - [x] Pose Preparation Scripts
 - [x] Depth & Flow Preparation Scripts
-- [ ] Code for training and testing
+- [x] Code for training and testing
 - [ ] Foreground Vehicle Reconstruction
 - [ ] Pretrained models (Demo Scenes)
 
@@ -82,10 +82,10 @@ Then follow the [Depth Preparation Instruction](/scripts/depth_model/README.md)
 
 
 ### Training Snerf 
-1. Dataset type: 
-Waymo or nuScenes
-- Waymo:`5cams`, args.waymo = True
-- nuScenes:`6cams`, args.backcam = True
+```
+cd s-nerf
+python train.py --config [CONFIG FILE]
+```
 
 
 ## Citation
