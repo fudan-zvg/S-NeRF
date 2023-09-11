@@ -156,6 +156,7 @@ def train(rank=None, world_size=None,seed=None):
         sel_coords = sel_coords[:args.N_rgb]
         pred_distance = pred_distance[:args.N_rgb]
         pred_distance_coarse = pred_distance_coarse[:args.N_rgb]
+        #TODO: DEBUG: Suggest do not use Smooth Loss for now, fix it later
         pred_distance_smooth = pred_distance[args.N_rgb:]
 
         target_depth = target_depth[:args.N_rgb]

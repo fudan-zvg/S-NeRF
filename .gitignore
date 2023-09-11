@@ -10,12 +10,7 @@ __pycache__/
 data/
 output/
 temp/
-background/configs/
-foreground/configs/
-background/data/
-foreground/data/
-background/exp/
-foreground/logs/
+s-nerf/exp
 
 # Distribution / packaging
 .Python
