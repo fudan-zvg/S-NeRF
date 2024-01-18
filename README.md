@@ -1,9 +1,12 @@
 # S-NeRF: Neural Radiance Fields for Street Views
-### [[Project]](https://ziyang-xie.github.io/s-nerf/)[ [Paper]](https://arxiv.org/abs/2303.00749) 
+### [[Project page]](https://ziyang-xie.github.io/s-nerf/)[ [Paper]](https://arxiv.org/abs/2303.00749) 
+> [**S-NeRF: Neural Radiance Fields for Street Views**](https://arxiv.org/abs/2303.00749),  
+> [Ziyang Xie](https://ziyangxie.site/), [Junge Zhang](https://andy-zd.github.io/), Wenye Li, [Feihu Zhang](http://www.feihuzhang.com/), [Li Zhang](https://lzrobots.github.io)  
+> **ICLR 2023**
 
 We introduce S-NeRF, a robust system to synthesizing large unbounded street views for autonomous driving using Neural Radiance Fields (NeRFs). This project aims to enhance the realism and accuracy of street view synthesis and improve the robustness of NeRFs for real-world applications. (e.g. autonomous driving simulation, robotics, and augmented reality)
 
-## Key Features
+## ✨ Key Features
 
 - **Large-scale Street View Synthesis**: S-NeRF is able to synthesize large-scale street views with high fidelity and accuracy.
 
@@ -13,10 +16,10 @@ We introduce S-NeRF, a robust system to synthesizing large unbounded street view
 
 - **Foreground Moving Vehicles**: S-NeRF extends its capabilities for reconstructing moving vehicles, a task that is impracticable for conventional NeRFs.
 
-## Model Pipline Overview
+## 👀 Model Pipline Overview
 ![Model](./assets/model.png)
 
-## Demo
+## 📷 Demo
 [![Demo Video](https://img.youtube.com/vi/CY4NK-bvEus/0.jpg)](https://www.youtube.com/embed/CY4NK-bvEus)
 
 ## TODOs
@@ -27,7 +30,7 @@ We introduce S-NeRF, a robust system to synthesizing large unbounded street view
 - [ ] Foreground Vehicle Reconstruction
 - [ ] Pretrained models (Demo Scenes)
 
-## Installation
+## 🔧 Installation
 Create a conda environment:
 ```
 conda create -n S-NeRF python=3.8 
@@ -81,20 +84,20 @@ Put the first smaple token of the scene in `./data/depth/sample_tokens.txt`
 Then follow the [Depth Preparation Instruction](/scripts/depth_model/README.md)
 
 
-### Training Snerf 
+### 🚀 Training Snerf 
 ```
 cd s-nerf
 python train.py --config [CONFIG FILE]
 ```
 
 
-## Citation
+## 📝 Bibtex
 If you find this work useful, please cite:
-```
+```bibtex
 @inproceedings{ziyang2023snerf,
 author = {Xie, Ziyang and Zhang, Junge and Li, Wenye and Zhang, Feihu and Zhang, Li},
 title = {S-NeRF: Neural Radiance Fields for Street Views},
-booktitle = {ICLR 2023},
+booktitle = {International Conference on Learning Representations (ICLR)},
 year = {2023}
 }
 ```
