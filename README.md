@@ -3,7 +3,7 @@
 
 ## 👀 Foreground Vehicle Reconstruction Pipline
 
-For reconstructing foreground elements, we provide access to both our training code and dataset. The dataset, which can be downloaded ![here](https://drive.google.com/drive/folders/1XgcjS7TmwKNY0FSELMajRr3q2MlHCk8U?usp=sharing), includes data on 16 moving vehicles and 64 static vehicles. Each vehicle is represented with 4 to 8 training views along with their corresponding depth information. The training code can be found in the s-nerf-foreground directory.
+For reconstructing foreground elements, we provide access to both our training code and dataset. The dataset, which can be downloaded [here](https://drive.google.com/drive/folders/1XgcjS7TmwKNY0FSELMajRr3q2MlHCk8U?usp=sharing), includes data on 16 moving vehicles and 64 static vehicles. Each vehicle is represented with 4 to 8 training views along with their corresponding depth information. The training code can be found in the s-nerf-foreground directory.
 
 During the datacollection, the ego car (camera) is moving and the target car (object) is also moving. We propose a virtual camera transformation process that treats the target car (moving object) as static and then compute the relative camera poses for the ego car’s camera. These relative camera poses can be estimated through the 3D object
 detectors. After the transformation, only the camera is moving which is favorable in training NeRFs.
