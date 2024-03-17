@@ -1,0 +1,1 @@
+cd ./data/nusample && python resizer.py && cd ../../
