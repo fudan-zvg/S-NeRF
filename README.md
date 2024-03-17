@@ -5,7 +5,7 @@
 > **ICLR 2023**
 
 <div style="text-align: center;">
-<img src="./assets/demo.gif" height="250" alt="ALT_TEXT">
+    <img src="./assets/demo.gif" height="600" alt="ALT_TEXT">
 </div>
 
 
