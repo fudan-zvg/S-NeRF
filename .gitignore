@@ -151,7 +151,6 @@ web
 *.pyc
 *.tar
 *.mp4
-*.png
 .vscode
 *.ipynb
 geosim_eval.py
