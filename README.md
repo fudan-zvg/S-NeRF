@@ -1,10 +1,13 @@
 # S-NeRF: Neural Radiance Fields for Street Views
-### [[Project page]](https://ziyang-xie.github.io/s-nerf/)[ [Paper]](https://arxiv.org/abs/2303.00749) 
+### [[Project page]](https://ziyang-xie.github.io/s-nerf/) / [ [Paper]](https://arxiv.org/abs/2303.00749) / [[Demo]](https://img.youtube.com/vi/CY4NK-bvEus/0.jpg)
 > [**S-NeRF: Neural Radiance Fields for Street Views**](https://arxiv.org/abs/2303.00749),  
 > [Ziyang Xie](https://ziyangxie.site/), [Junge Zhang](https://andy-zd.github.io/), Wenye Li, [Feihu Zhang](http://www.feihuzhang.com/), [Li Zhang](https://lzrobots.github.io)  
 > **ICLR 2023**
 
-![demo](./assets/demo.gif)
+<div style="text-align: center;">
+<img src="./assets/demo.gif" height="250" alt="ALT_TEXT">
+</div>
+
 
 We introduce S-NeRF, a robust system to synthesizing large unbounded street views for autonomous driving using Neural Radiance Fields (NeRFs). This project aims to enhance the realism and accuracy of street view synthesis and improve the robustness of NeRFs for real-world applications. (e.g. autonomous driving simulation, robotics, and augmented reality)
 
@@ -20,9 +23,6 @@ We introduce S-NeRF, a robust system to synthesizing large unbounded street view
 
 ## 👀 Model Pipline Overview
 ![Model](./assets/model.png)
-
-## 📷 Demo
-[![Demo Video](https://img.youtube.com/vi/CY4NK-bvEus/0.jpg)](https://www.youtube.com/embed/CY4NK-bvEus)
 
 ## TODOs
 - [x] Env Installation
