@@ -4,9 +4,7 @@
 > [Ziyang Xie](https://ziyangxie.site/), [Junge Zhang](https://andy-zd.github.io/), Wenye Li, [Feihu Zhang](http://www.feihuzhang.com/), [Li Zhang](https://lzrobots.github.io)  
 > **ICLR 2023**
 
-<div style="text-align: center;">
-    <img src="./assets/demo.gif" height="600" alt="ALT_TEXT">
-</div>
+![demo](./assets/demo.gif)
 
 
 We introduce S-NeRF, a robust system to synthesizing large unbounded street views for autonomous driving using Neural Radiance Fields (NeRFs). This project aims to enhance the realism and accuracy of street view synthesis and improve the robustness of NeRFs for real-world applications. (e.g. autonomous driving simulation, robotics, and augmented reality)
