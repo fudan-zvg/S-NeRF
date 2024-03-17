@@ -27,7 +27,7 @@ We introduce S-NeRF, a robust system to synthesizing large unbounded street view
 - [x] Pose Preparation Scripts
 - [x] Depth & Flow Preparation Scripts
 - [x] Code for training and testing
-- [x] Foreground Vehicle Reconstruction [S-NeRF-fg](https://github.com/fudan-zvg/S-NeRF/tree/foreground)
+- [x] Foreground Vehicle Reconstruction [Foreground-branch](https://github.com/fudan-zvg/S-NeRF/tree/foreground)
 
 ## 🔧 Installation
 Create a conda environment:
@@ -89,7 +89,7 @@ cd s-nerf
 python train.py --config [CONFIG FILE]
 ```
 
-For the foreground vehicle reconstruction, please refer to branch [S-NeRF-fg](https://github.com/fudan-zvg/S-NeRF/tree/foreground).
+> For the foreground vehicle reconstruction, please refer to branch [foreground](https://github.com/fudan-zvg/S-NeRF/tree/foreground).
 
 
 ## 📝 Bibtex
