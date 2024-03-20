@@ -145,7 +145,6 @@ data
 wandb
 scripts
 tools
-configs
 vis
 web
 *.pyc

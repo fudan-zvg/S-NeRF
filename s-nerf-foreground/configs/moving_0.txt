@@ -1,0 +1,41 @@
+expname = moving_0
+basedir = ./logs/cars/moving/0
+datadir = ./data/nerf_data_moving
+dataset_type = nuscenes
+
+N_rgb = 512
+N_patch = 8
+patch_sz = 8
+N_samples = 64
+N_importance = 64
+
+use_viewdirs = True
+raw_noise_std = 1e0
+
+chunk = 8192
+netchunk = 16384
+netdepth = 4
+
+i_testset = 20000
+i_video = 200000
+i_weight = 5000
+N_iters = 20000
+
+train_scene = [1, 2, 3, 4, 5]
+test_scene = [0]
+no_ndc = True
+depth_loss = True
+
+render_factor = 4
+recenter = True
+
+car_sample_n = 0
+block_bg = True
+white_bkgd = True
+pose_refine = True
+depth_conf = True
+smooth_loss = True
+
+depth_lambda = 1
+smooth_lambda = 0.1
+
