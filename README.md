@@ -88,8 +88,3 @@ Our bbox format is following [kitti-format Waymo dataset](https://github.com/cai
       year={2024},
 }
 ```
-
-
-
-## neus dataset for vehicles
-/SSD_DISK/users/liwenye/instant-ngp-neus/load
