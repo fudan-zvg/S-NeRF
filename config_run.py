@@ -114,7 +114,8 @@ if __name__ == '__main__':
         cfg.n_images = args_config.n_images
 
     #### here to add scenes
-    result_name_list = ['0029075']
+    # result_name_list = ['0029075']
+    result_name_list = os.listdir('./zipnerf/ckpt')
 
     args = {}
     

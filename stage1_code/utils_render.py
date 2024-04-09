@@ -386,7 +386,7 @@ def decode_image(fg_dir,
     else:
         idx_d = idx
 
-    # cyr mesh render,  the same as person
+    # mesh render,  the same as person
     if meta_data.get('mesh_render', 0)>0:
         instance_im, mask_im = get_instance_im(idx_d,
                                                sc=1,  # ori 4//render_factor
@@ -619,7 +619,7 @@ def get_bbox_result(idx,
 
     ### ori
     # bbox_result["rot_y"] = y_angle
-    ### cyr todo: some thing wrong here
+    ### todo: some thing wrong here
     bbox_result["rot_y"] = y_angle-math.pi/2
     bbox_result["confidence"] = 1
 

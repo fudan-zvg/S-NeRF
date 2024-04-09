@@ -123,7 +123,7 @@ class Model(nn.Module):
     Returns:
       ret: list, [*(rgb, distance, acc)]
     """
-        # cyr
+        #
         # self.scale_sample_points(step, max_step)
 
 

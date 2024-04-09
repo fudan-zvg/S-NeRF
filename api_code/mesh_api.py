@@ -58,8 +58,8 @@ if __name__ == '__main__':
         ckpts = sorted(os.listdir(base))
         checkpoints = [join(base, a,'mesh','mesh.obj') for a in ckpts]
         checkpoints = [checkpoint for checkpoint in checkpoints if os.path.exists(checkpoint)]
-        checkpoints = []   ### cyr todo: debug
-        root_neus = '/SSD_DISK/users/chenyurui/instant-ngp-neus/align_meshes'
+        # checkpoints = []   ### todo: debug
+        root_neus = join(simnerf_root, 'TEXTure_ckpt','align_meshes')
         ckpts_neus = [join(root_neus, a) for a in os.listdir(root_neus)]
         checkpoints = checkpoints+ckpts_neus
 

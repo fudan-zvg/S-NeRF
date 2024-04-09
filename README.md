@@ -31,7 +31,7 @@ git clone https://github.com/NVlabs/nvdiffrast
 pip install ./nvdiffrast
 
 git clone https://github.com/ashawkey/raytracing
-pip install ./ratracing
+pip install ./raytracing
 
 pip install torch_scatter ./zipnerf/gridencoder
 
@@ -40,19 +40,19 @@ pip install kaolin==0.15.0 -f https://nvidia-kaolin.s3.us-east-2.amazonaws.com/t
 ```
 
 #### Download our Fusion adaption model
-The pretrained relighting and inpainting models can be downloaded [here](None). Put the `inpaint` directory in the main directory `./`
+The pretrained relighting and inpainting models can be downloaded [here](https://drive.google.com/drive/folders/127pvyKt6I-10KViVAYwTywDcXo8ngZk0). Put the `inpaint` directory in the main directory `./`
 
 #### Download our Foreground asset bank
-Some of the reconstructed or generated foreground assets can be downloaded here [here](None). Put the `TEXTure_ckpt` directory in the main directory `./`
+Some of the reconstructed or generated foreground assets can be downloaded here [here](https://drive.google.com/drive/folders/127pvyKt6I-10KViVAYwTywDcXo8ngZk0). Put the `TEXTure_ckpt` directory in the main directory `./`
 
 ### Background Training
 The NeRF training and data process are to be released.  
-A processed waymo scene dataset and its trained checkpoint can be downloaded [here](None). Put the `dataset` in the `./` and `ckpt` in `./zipnerf/`
+A processed waymo scene dataset and its trained checkpoint can be downloaded [here](https://drive.google.com/drive/folders/127pvyKt6I-10KViVAYwTywDcXo8ngZk0). Put the `dataset` in the `./` and `ckpt` in `./zipnerf/`
 ### Simulating
 You can run the following code to start simulation based on trained NeRF ckpts (background scenes) and foreground assets.
 ```shell
 # Two cars will be randomly inserted into each scene. Simulate 10 images for each scene
-python config_run.py --config config/car.yaml --n_image 10 --gpu 0
+python config_run.py --config configs/car.yaml --n_image 10 --gpu 0
 ```
 You will find the simulation data in `./annotation` directory as follows:
 ```
@@ -88,3 +88,4 @@ Our bbox format is following [kitti-format Waymo dataset](https://github.com/cai
       year={2024},
 }
 ```
+
