@@ -22,7 +22,7 @@ cd ###
 
 # Make a conda environment.
 conda create --name snerfpp python=3.9
-conda activate snerfpp
+conda activate snerfpp 
 
 # Install requirements.
 pip install -r requirements.txt
