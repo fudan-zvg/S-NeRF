@@ -43,7 +43,7 @@ pip install "git+https://github.com/facebookresearch/pytorch3d.git@stable"
 
 Install the required packages:
 ```
-pip install -r requiremnets.txt
+pip install -r requirements.txt
 ```
 
 ### 📂 Data Preparation
