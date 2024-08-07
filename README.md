@@ -1,5 +1,5 @@
 # S-NeRF++: Autonomous Driving Simulation via Neural Reconstruction and Generation
-### [[Paper]](https://arxiv.org/abs/2402.02112) 
+### [[Paper]](https://arxiv.org/abs/2402.02112)  [[Project]](https://fumore.github.io/S-NeRFPP/) 
 
 > [**S-NeRF++: Autonomous Driving Simulation via Neural Reconstruction and Generation**](https://arxiv.org/abs/2402.02112),            
 > Yurui Chen, Junge Zhang, Ziyang Xie, Wenye Li, Feihu Zhang, Jiachen Lu, Li Zhang  
