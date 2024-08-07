@@ -10,7 +10,7 @@
 
 ## 🛠️ Pipeline
 <div align="center">
-  <img src="assets/pipeline.jpg"/>
+  <img src="assets/pipeline.png"/>
 </div><br/>
 
 ## Get started
