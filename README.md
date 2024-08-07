@@ -41,14 +41,14 @@ conda create -n S-NeRF python=3.8
 conda activate S-NeRF
 ```
 
+Install the required packages:
+```
+pip install -r requirements.txt
+```
+
 Install predependents:
 ```
 pip install "git+https://github.com/facebookresearch/pytorch3d.git@stable"
-```
-
-Install the required packages:
-```
-pip install -r requiremnets.txt
 ```
 
 ### 📂 Data Preparation
