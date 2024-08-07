@@ -75,6 +75,11 @@ annotation
 ```
 Our bbox format is following [kitti-format Waymo dataset](https://github.com/caizhongang/waymo_kitti_converter). The camera parameters of each frame are saved in `intrinsic.npy` and `target_poses.npy`. The semantic labels are following Cityscape 19 classes. 
 
+## TODOs
+- [x] Data preparation
+- [x] Nuscenes pipeline
+- [x] Foreground generation
+
 ## 🎞️ Some simulation results on Waymo
 <div align="center">
   <img src="assets/simulation.png"/>
