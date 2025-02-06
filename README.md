@@ -4,6 +4,11 @@
 > [Ziyang Xie](https://ziyangxie.site/), [Junge Zhang](https://andy-zd.github.io/), Wenye Li, [Feihu Zhang](http://www.feihuzhang.com/), [Li Zhang](https://lzrobots.github.io)  
 > **ICLR 2023**
 
+### [[Project page]](https://fudan-zvg.github.io/S-NeRF/) / [[Paper]](https://arxiv.org/abs/2402.02112)
+> [**S-NeRF++: Autonomous Driving Simulation via Neural Reconstruction and Generation**](https://arxiv.org/abs/2402.02112),  
+> Yurui Chen, [Junge Zhang](https://andy-zd.github.io/), [Ziyang Xie](https://ziyangxie.site/),  Wenye Li, [Feihu Zhang](http://www.feihuzhang.com/), Jiachen Lu, [Li Zhang](https://lzrobots.github.io)  
+> **TPAMI 2025**
+
 ![demo](./assets/demo.gif)
 
 
@@ -100,11 +105,19 @@ python train.py --config [CONFIG FILE]
 ## 📝 Bibtex
 If you find this work useful, please cite:
 ```bibtex
-@inproceedings{ziyang2023snerf,
+@inproceedings{xie2023snerf,
 author = {Xie, Ziyang and Zhang, Junge and Li, Wenye and Zhang, Feihu and Zhang, Li},
 title = {S-NeRF: Neural Radiance Fields for Street Views},
 booktitle = {International Conference on Learning Representations (ICLR)},
 year = {2023}
+}
+```
+```bibtex
+@article{chen2025snerf,
+title={S-NeRF++: Autonomous Driving Simulation via Neural Reconstruction and Generation},
+author={Chen, Yurui and Zhang, Junge and Xie, Ziyang and Li, Wenye and Zhang, Feihu and Lu, Jiachen and Zhang, Li},
+journal={IEEE Transactions on Pattern Analysis and Machine Intelligence (TPAMI)},
+year={2025}
 }
 ```
 
