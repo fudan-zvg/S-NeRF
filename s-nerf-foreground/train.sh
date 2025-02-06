@@ -1,1 +1,0 @@
-CUDA_VISIBLE_DEVICES=$1 python run_nerf.py --config $2
