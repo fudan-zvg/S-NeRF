@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>S-NeRF++</title>
+    <!-- Bootstrap -->
+    <link href="css/bootstrap-4.4.1.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="css/dics.min.css">
+<!--    <link href="https://db.onlinewebfonts.com/c/d02befc8fdd8e5315fb21fa7f38fd55a?family=Shree+Devanagari+714" rel="stylesheet">-->
+    <!-- <link rel="stylesheet" href="css/bulma.min.css"> -->
+    <script src="scripts/dics.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', domReady);
+        function domReady() {
+            for (const e of document.querySelectorAll(".b-dics")) {
+                new Dics({
+                    container: e,
+                    textPosition: "top"
+                });
+            }
+        }
+    </script>
+</head>
+
+<body>
+
+    <section>
+        <div class="text-center mt-4">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12">
+                        <h1> S-NeRF++: Autonomous Driving Simulation via Neural Reconstruction and Generation</h1>
+                        <hr>
+                        <h5> Yurui Chen,
+                            Junge Zhang,
+                            Ziyang Xie,
+                            Wenye Li,
+                            Feihu Zhang,
+                            Jiachen Lu,
+                            <a href="https://lzrobots.github.io/" target="_blank">Li Zhang</a> </h5>
+                        <h5 style="color:#000000;">School of Data Science, Fudan University</h5>
+                        <br>
+                        <p>
+                            <a class="btn btn-secondary btn-lg" href="https://arxiv.org/abs/2402.02112" role="button">Paper</a>
+                            <a class="btn btn-secondary btn-lg" href="https://github.com/fudan-zvg/S-NeRF/tree/s-nerf%2B%2B" role="button">Code</a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <br>
+    <br>
+
+    <section>
+        <div class="container">
+
+            <div class="row" style="margin-top:5px">
+                <div class="col-12 text-center">
+                    <h2>Reconstrcution Method of Dynamic scenes</h2>
+                    <hr style="margin-top:0px">
+                </div>
+            </div>
+            <img class="img-fluid" src="img/mvbg.png" alt="">
+            <br>
+            <br>
+
+            <ul>
+                We use a cascade sampling strategy to reconstruct the background and moving objects together. For each sample point on the ray casting from o with direction d,
+                 we use an object network whose weights are shared through all sampling stages to decode volume rendering attributes when the point is in the corresponding object bounding box while background/proposal network to decode the point not in any box. 
+                 Notice that if the sampling point is not in the final stage, the network only outputs density and the gradient will not pass to the object network. Rendering weights computed by the proposal stage will be only supervised by the rendering 
+                 weights in the next stage by proposal Loss. Each network is composed of a multi-scale hash grid and an MLP decoder. For better anti-aliasing rendering, we follow Zip-NeRF 
+                and aggregate the hash grid features in the cone for the background points before passing them to the MLP while only using down-weighting features for the object points.
+            </ul>
+
+        </div>
+    </section>
+    <br>
+    <br>
+
+
+
+    <section>
+        <div class="container">
+            <div class="row">
+                <div class="col-12 text-center">
+                    <h2>Rendered RGB and Depth</h2>
+                </div>
+            </div>
+            <hr style="margin-top:0px">
+
+            <div class="b-row">
+                <figure style="text-align: center;">
+                    <video width="100%" playsinline="" autoplay="" loop="" preload="" muted="">
+                        <source src="img/videos/32sample.mp4" type="video/mp4">
+                    </video>
+               </figure>
+            </div>
+        </div>
+    </section>
+
+    <br>
+    <br>
+
+    <section>
+        <div class="container">
+            <div class="row">
+                <div class="col-12 text-center">
+                    <h2>Dynamic Scenes Reconstruction</h2>
+                </div>
+            </div>
+            <!-- <hr style="margin-top:0px"> -->
+            <div class="b-row">
+                <div class="col-6 text-center">
+                    <h3>Replay</h3>
+                </div>
+                <div class="col-6 text-center">
+                    <h3>New Track</h3>
+                </div>
+            </div>
+            <hr style="margin-top:0px">
+
+            <div class="b-row">
+                <figure style="text-align: center;">
+                    <video width="100%" playsinline="" autoplay="" loop="" preload="" muted="">
+                        <source src="img/videos/0213_rp_a.mp4" type="video/mp4">
+                    </video>
+                </figure>
+                <figure style="text-align: center;">
+                    <video width="100%" playsinline="" autoplay="" loop="" preload="" muted="">
+                        <source src="img/videos/0213_nt_a.mp4" type="video/mp4">
+                    </video>
+                </figure>
+            </div>
+
+            <!-- <hr style="margin-top:0px"> -->
+            <div class="b-row">
+                <div class="col-6 text-center">
+                    <h3>New Track</h3>
+                </div>
+                <div class="col-6 text-center">
+                    <h3>Novel View</h3>
+                </div>
+            </div>
+            <hr style="margin-top:0px">
+
+            <div class="b-row">
+                <figure style="text-align: center;">
+                    <video width="100%" playsinline="" autoplay="" loop="" preload="" muted="">
+                        <source src="img/videos/0236_nt_a.mp4" type="video/mp4">
+                    </video>
+                </figure>
+                <figure style="text-align: center;">
+                    <video width="100%" playsinline="" autoplay="" loop="" preload="" muted="">
+                        <source src="img/videos/0236_pert_a.mp4" type="video/mp4">
+                    </video>
+                </figure>
+            </div>
+
+        </div>
+    </section>
+    <br>
+    <br>
+
+    <section>
+        <div class="container">
+
+            <div class="row" style="margin-top:5px">
+                <div class="col-12 text-center">
+                    <h2>Simulation Pipeline</h2>
+                    <hr style="margin-top:0px">
+                </div>
+            </div>
+            <img class="img-fluid" src="img/pipeline.png" alt="">
+            <br>
+            <br>
+
+            <ul>
+                The whole pipeline of our simulation system. We construct our background representation and foreground bank. Given any pose of the camera and object, we render for these two branches separately.
+                 Then we judge the occlusion relationship between the foreground and background by depth, process the edge and illumination of the inserted object, render the shadow, and finally obtain the simulation data with labels.
+            </ul>
+
+        </div>
+    </section>
+    <br>
+    <br>
+
+    <section>
+        <div class="container">
+
+            <div class="row" style="margin-top:5px">
+                <div class="col-12 text-center">
+                    <h2>Object Insertion Refinement</h2>
+                    <hr style="margin-top:0px">
+                </div>
+            </div>
+            <img class="img-fluid" src="img/refine.png" alt="">
+            <br>
+            <br>
+
+            <ul>
+                We present two different approaches to refine synthetic data:
+                (a) A naive neural network-based method that leverages networks to inpaint object edges and adjust the lighting corresponding to the object mask.
+                (b) An optimization-based refinement approach that utilizes a differentiable PBR pipeline to apply SDS loss on the composed image, optimizing the background ambient lighting to achieve realistic relighting and shadow.</ul>
+
+        </div>
+    </section>
+    <br>
+    <br>
+
+
+    <section>
+        <div class="container">
+            <div class="row">
+                <div class="col-12 text-center">
+                    <h2>Simulation: Car Insertion from Other Dataset with Refinement</h2>
+                </div>
+            </div>
+            <hr style="margin-top:0px">
+
+            <div class="b-row">
+                <figure style="text-align: center;">
+                    <video width="100%" playsinline="" autoplay="" loop="" preload="" muted="">
+                      <source src="img/videos/demo_0005145_adapt_c.mp4" type="video/mp4">
+                    </video>
+                </figure>
+                <figure style="text-align: center;">
+                    <video width="100%" playsinline="" autoplay="" loop="" preload="" muted="">
+                      <source src="img/videos/demo_0029075_adapt_3_highsample_c.mp4" type="video/mp4">
+                    </video>
+                </figure>
+            </div>
+
+            <div class="b-row">
+                <figure style="text-align: center;">
+                    <video width="100%" playsinline="" autoplay="" loop="" preload="" muted="">
+                      <source src="img/videos/demo_0036100_adapt_c.mp4" type="video/mp4">
+                    </video>
+                </figure>
+                <figure style="text-align: center;">
+                    <video width="100%" playsinline="" autoplay="" loop="" preload="" muted="">
+                      <source src="img/videos/demo_0159100_c.mp4" type="video/mp4">
+                    </video>
+                </figure>
+            </div>
+
+
+        </div>
+    </section>
+
+    <br>
+    <br>
+
+    <section>
+        <div class="container">
+            <div class="row">
+                <div class="col-12 text-center">
+                    <h2>Generated Objects</h2>
+                </div>
+            </div>
+            <hr style="margin-top:0px">
+
+            <div class="b-row">
+                <figure style="text-align: center;">
+                    <video width="100%" playsinline="" autoplay="" loop="" preload="" muted="">
+                      <source src="img/videos/m1.mp4" type="video/mp4">
+                    </video>
+                </figure>
+                <figure style="text-align: center;">
+                    <video width="100%" playsinline="" autoplay="" loop="" preload="" muted="">
+                      <source src="img/videos/m2.mp4" type="video/mp4">
+                    </video>
+                </figure>
+                <figure style="text-align: center;">
+                    <video width="100%" playsinline="" autoplay="" loop="" preload="" muted="">
+                      <source src="img/videos/b1.mp4" type="video/mp4">
+                    </video>
+                </figure>
+                <figure style="text-align: center;">
+                    <video width="100%" playsinline="" autoplay="" loop="" preload="" muted="">
+                      <source src="img/videos/b2.mp4" type="video/mp4">
+                    </video>
+                </figure>
+                <figure style="text-align: center;">
+                    <video width="100%" playsinline="" autoplay="" loop="" preload="" muted="">
+                      <source src="img/videos/c1.mp4" type="video/mp4">
+                    </video>
+                </figure>
+                <figure style="text-align: center;">
+                    <video width="100%" playsinline="" autoplay="" loop="" preload="" muted="">
+                      <source src="img/videos/c2.mp4" type="video/mp4">
+                    </video>
+                </figure>
+            </div>
+
+        </div>
+    </section>
+
+
+    <footer class="text-center">
+        <div class="container">
+            <div class="row ">
+                <div class="col-12">
+                    <h2>BibTeX</h2>
+                    <hr style="margin-top:0px">
+                    <div class="bibtexsection">
+                        <code style="color: black;">
+    @article{chen2025snerf,
+        title={S-NeRF++: Autonomous Driving Simulation via Neural Reconstruction and Generation},
+        author={Chen, Yurui and Zhang, Junge and Xie, Ziyang and Li, Wenye and Zhang, Feihu and Lu, Jiachen and Zhang, Li},
+        journal={IEEE Transactions on Pattern Analysis and Machine Intelligence},
+        year={2025}
+    }
+                        </code>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <br>
+    <br>
+
+
+    <div class="row">
+        <div class="col-12 text-center">
+            <p>
+                Acknowledgements: The website template was borrowed from <a href="https://lioryariv.github.io/idr/">Lior Yariv</a>.
+                Image sliders are based on <a href="https://github.com/abelcabezaroman/definitive-image-comparison-slider">dics</a>.
+            </p>
+        </div>
+    </div>
+    <br>
+    <br>
+
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="js/jquery-3.4.1.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="js/popper.min.js"></script>
+    <script src="js/bootstrap-4.4.1.js"></script>
+</body>
+</html>
