@@ -1,0 +1,15 @@
+Config.exp_name = 'test3'
+Config.dataset_loader = 'nusc'
+Config.near = 0.1
+Config.far = 10
+Config.factor = 1
+
+Model.raydist_fn = 'power_transformation'
+Model.opaque_background = True
+
+PropMLP.disable_density_normals = True
+PropMLP.disable_rgb = True
+PropMLP.grid_level_dim = 1
+
+NerfMLP.disable_density_normals = True
+NerfMLP.deg_view = 1

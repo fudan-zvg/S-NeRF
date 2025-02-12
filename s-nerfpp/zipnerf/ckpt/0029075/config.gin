@@ -1,0 +1,30 @@
+# Parameters for Config:
+# ==============================================================================
+Config.batch_size = 32768
+Config.data_dir = '/SSD_DISK/users/chenyurui/zipnerf/data/waymo/0029075'
+Config.dataset_loader = 'waymo'
+Config.exp_name = 'waymo/0029075/_base_'
+Config.factor = 1
+Config.far = 10
+Config.gpu_num = 4
+Config.llff_use_all_images_for_training = True
+Config.max_steps = 50000
+Config.near = 0.1
+Config.render_chunk_size = 8192
+Config.train_render_every = 10000
+
+# Parameters for Model:
+# ==============================================================================
+Model.opaque_background = True
+Model.raydist_fn = 'power_transformation'
+
+# Parameters for NerfMLP:
+# ==============================================================================
+NerfMLP.deg_view = 1
+NerfMLP.disable_density_normals = True
+
+# Parameters for PropMLP:
+# ==============================================================================
+PropMLP.disable_density_normals = True
+PropMLP.disable_rgb = True
+PropMLP.grid_level_dim = 1

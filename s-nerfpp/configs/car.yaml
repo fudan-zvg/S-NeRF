@@ -1,0 +1,11 @@
+n_images: 70
+bg_already_exists: False
+only_side_cam: False
+only_front_cam: False
+no_added_vehicles: False
+
+vehicles_n: 2
+persons_n: 0
+objects_n: 0
+bicycles_n: 0
+motorcycles_n: 0
