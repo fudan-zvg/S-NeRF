@@ -17,7 +17,6 @@ We introduce S-NeRF, a robust system to synthesizing large unbounded street view
 ## 🚀 News
 [8/06/24]  We released the code for [**S-NeRF++: Autonomous Driving Simulation via Neural Reconstruction and Generation**](https://arxiv.org/abs/2402.02112). A comprehensive driving simulation system based on neural reconstruction. 
 
-- Check it out 👉🏻 [directory s-nerfpp](#🔄Introducing S-NeRF++)
 
 ## ✨ Key Features
 
