@@ -4,7 +4,7 @@
 > [Ziyang Xie](https://ziyangxie.site/), [Junge Zhang](https://andy-zd.github.io/), Wenye Li, [Feihu Zhang](http://www.feihuzhang.com/), [Li Zhang](https://lzrobots.github.io)  
 > **ICLR 2023**
 
-### [[Project page]](https://fudan-zvg.github.io/S-NeRF/) / [[Paper]](https://arxiv.org/abs/2402.02112)
+### [[Project page]](https://fudan-zvg.github.io/S-NeRF/) / [[Paper]](https://arxiv.org/abs/2402.02112) / [[Demo]](https://www.youtube.com/embed/nWF9ZCnHIQM)
 > [**S-NeRF++: Autonomous Driving Simulation via Neural Reconstruction and Generation**](https://arxiv.org/abs/2402.02112),  
 > Yurui Chen, [Junge Zhang](https://andy-zd.github.io/), [Ziyang Xie](https://ziyangxie.site/),  Wenye Li, [Feihu Zhang](http://www.feihuzhang.com/), Jiachen Lu, [Li Zhang](https://lzrobots.github.io)  
 > **TPAMI 2025**
